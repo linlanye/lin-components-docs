@@ -8,7 +8,7 @@
 * [basement的服务器组件](basement_server/README.md)
 * [一般组件](components/README.md)
 
-（basement项目参见：[https://github.com/linlanye/basement](https://github.com/linlanye/lin)）
+（basement项目参见：[https://github.com/linlanye/basement](https://github.com/linlanye/basement)）
 
 
 ## 组件列表
