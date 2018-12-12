@@ -18,7 +18,7 @@
 * [Config](basement/config/Config.md) （配置类）
 * [Debug](basement/debug/Debug.md)	  （调试类）
 * [Event](basement/event/Event.md)    （事件类）
-* [GeneralException](basement/exception/GeneralException.md) （扩展异常类）
+* [Exception](basement/exception/GeneralException.md) （扩展异常类）
 * [Lang](basement/lang/Lang.md) （语言映射类）
 * [Log](basement/log/Log.md) （日志类）
 * [Request](basement/request/Request.md) (请求类)
@@ -53,5 +53,3 @@
 
 ## 版权信息
 * 作者：林澜叶(linlanye)版权所有。
-* 开源协议：[Apache-2.0](LICENSE)
-
