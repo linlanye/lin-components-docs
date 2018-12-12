@@ -20,7 +20,7 @@ namespace: `lin\basement\config`
 
 #### 配置项
 
-可动态修改：**否**
+静态配置
 
 ~~~php
 <?php
@@ -41,11 +41,11 @@ Config::lin('k0.k1'); //等效于Config::get('lin')['k0']['k1']
 //动态设置
 Config::lin(['k0.k1'=>'v']); //将lin配置中的['k0']['k1']项设置为v值
 
-//清空目标配置数据
+//清除目标配置数据
 Config::clean('lin');//清空lin的配置
 Config::clean();//清空所有配置
 
-//清空所有配置数据，并重置（重新加载组件配置项）
+//重置
 Config::reset();
 ~~~
 
@@ -73,7 +73,7 @@ return:
     array|null 失败或不存在则返回null
 ```
 
-**::clean()**: 清除配置
+**::clean()**: 清除
 ```php
 params:
     string $name='' 配置名，空则清空所有
@@ -81,7 +81,7 @@ return:
     bool 是否清除
 ```
 
-**::reset()**: 重置配置，清空所有配置及使用的配置项
+**::reset()**: 重置
 ```php
 params:
 	void

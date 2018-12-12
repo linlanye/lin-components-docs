@@ -48,6 +48,16 @@
 * [URL](components/url/URL.md) （url构建类）
 * [View](components/view/View.md) （视图类）
 
+
+## 约定
+对本文档一些术语进行解释，并在整个说明文档中都保持一致的意思。
+
+* **参见basement**：由于部分接口函数符合[basement](https://github.com/linlanye/basement)的规范要求，所以可直接前往[basement](https://github.com/linlanye/basement)项目查看具体说明。
+* **动、静态配置类**：每个组件类都依赖于一个专用的配置内容。有些类的配置项在整个生命器只加载一次，若后续调整配置内容，则不会产生任何变化，称为静态配置类；有些类的配置项则在每一次实例化都会重新加载一次配置，在生命期内调整配置内容会产生实际变化，称为动态配置类。
+* **重置**：有些类会提供`reset()`函数，一般代表重置的意思。重置不仅清空数据，还清空配置项，在这种情况下，再次运行静态配置的类会重新加载配置项。
+而`clean()`函数一般只清空数据，不清空配置项。
+
+
 ## 捐赠
 ![捐赠林澜叶](https://img.lin-php.com/donations.png)
 
