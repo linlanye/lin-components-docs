@@ -10,7 +10,7 @@ namespace: `lin\exception\Exception`
 
 ### 功能
 
-* 自定义错误异常处理
+* 自定义错误异常处理。
 
 
 #### 配置项

@@ -35,6 +35,7 @@ namespace: `lin\basement\config`
 
 ~~~php
 <?php
+
 //动态读取
 Config::lin('k0.k1'); //等效于Config::get('lin')['k0']['k1']
 
@@ -78,7 +79,7 @@ return:
 params:
     string $name='' 配置名，空则清空所有
 return:
-    bool 是否清除
+    bool 是否成功
 ```
 
 **::reset()**: 重置
@@ -86,5 +87,5 @@ return:
 params:
 	void
 return:
-    bool 是否重置
+    bool 是否成功
 ```

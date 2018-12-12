@@ -1,4 +1,96 @@
-额外功能：
-Event::run()可自动加载一次所有事件注册文件，只可运行一次，若需多次调用则每次需调用Event::reset()
-Event::reset()可重置并清空已有数据
-Event::one($eventName,$callable)可注册一次性事件
+Event类
+----
+namespace: `lin\basement\Event`
+
+包含如下类：
+
+* **lin\basement\event\Event**
+
+---
+
+### 功能
+
+* basement部分，[点击查看](https://github.com/linlanye/basement)
+* 扩展功能：
+	* 绑定一次性事件。
+	* 自动读取指定事件文件。
+	* 清空数据。
+
+
+#### 配置项
+
+静态配置
+
+~~~php
+<?php
+
+'event'     => [
+    'path'  => 'events/file/path', //存放定义事件的文件夹
+    'debug' => true, //调试模式
+],
+~~~
+
+#### 使用
+
+~~~php
+<?php
+
+//自动加载配置项path中的所有文件
+Event::run();
+Event::run('*');
+
+//加载配置项path中的指定文件或指定目录
+Event::run('file, folder/'); //同时加载path下的file文件和folder目录里的所有文件
+
+//不加载任何文件
+Event::run(null);
+
+//绑定一次性事件
+
+Event::one('lin','callback'); //绑定一次性事件lin
+
+//清除事件
+Debug::clean('lin'); //清空lin事件
+Debug::clean(); //清空所有事件
+~~~
+
+
+---
+
+
+## API
+
+#### 列表
+~~~php
+//非basement部分
+public static function run(? string $files = '*'): bool
+public static function one(string $event, callable $callable): bool
+public static function clean(string $event = ''): bool
+~~~
+
+#### 详细说明
+
+**::run()**: 自动加载指定事件文件
+```php
+params:
+    ? string $files='*' 加载配置项path下的文件或目录，支持通配符 “*” 和目录 “/”，默认加载所有，传入null则不加载
+return:
+    bool 是否成功
+```
+
+**::one()**: 绑定一次性事件
+```php
+params:
+    string   $event    事件名
+    callable $callable 执行回调
+return:
+    bool 是否成功
+```
+
+**::clean()**: 清除目标事件
+```php
+params:
+    string $event='' 事件名，空则清除所有
+return:
+    bool 是否成功
+```
