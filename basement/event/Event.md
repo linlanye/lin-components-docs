@@ -50,8 +50,8 @@ Event::run(null);
 Event::one('lin','callback'); //绑定一次性事件lin
 
 //清除事件
-Debug::clean('lin'); //清空lin事件
-Debug::clean(); //清空所有事件
+Event::clean('lin'); //清空lin事件
+Event::clean(); //清空所有事件
 ~~~
 
 
