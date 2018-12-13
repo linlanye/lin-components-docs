@@ -29,7 +29,7 @@ namespace: `lin\basement\kv`
 
 #### 配置项
 
-动态配置，见[KV](KV.md)
+见[KV](KV.md)
 
 #### 使用
 

@@ -17,7 +17,7 @@ KV类用于操作Key-Value型服务器，全部实现集群访问。
 
 * `lin\basement\kv\KVMemcache` 用于**windows**下访问memcached服务器，由memcache扩展的addServer()方法添加多个服务器到服务器连接池。
 * `lin\basement\kv\KVMemcached` 用于**unix**下访问memcached服务器，由memcache扩展的addServers()方法添加多个服务器到服务器连接池。
-* `lin\basement\kv\KVRedis` 用于访问redis服务器，由lin自身实现的一致性哈希算法实现集群访问。
+* `lin\basement\kv\KVRedis` 用于访问redis服务器，由lin自身实现的一致性哈希算法实现集群访问，并在实例每一次操作的时候散列到对应的服务器。
 
 
 
