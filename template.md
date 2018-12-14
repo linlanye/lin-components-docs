@@ -1,10 +1,10 @@
 类
 ----
-namespace: `lin\basement\`
+namespace: `lin\`
 
 包含如下类：
 
-* **lin\basement\**
+* **lin\**
 
 ---
 
@@ -15,9 +15,7 @@ namespace: `lin\basement\`
 
 ### 功能
 
-* basement部分，[点击查看](https://github.com/linlanye/basement)
-* 扩展功能：
-	* 
+*
 
 
 
@@ -48,7 +46,7 @@ namespace: `lin\basement\`
 
 #### 列表
 ~~~php
-//非basement部分
+
 
 ~~~
 

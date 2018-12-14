@@ -67,6 +67,6 @@ Exception::reset();
 
 #### 列表
 ~~~php
-public static function run(string $name = '')
+public static function run()
 public static function reset(): bool
 ~~~
