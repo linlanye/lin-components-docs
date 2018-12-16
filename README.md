@@ -25,11 +25,13 @@
 
 #### [Basement Server](basement_server/README.md)
 
-* [KV](basement_server/kv/KV.md) （Key-Value型服务器操作类）
-* [KVLocal](basement_server/kv/KVLocal.md) （Key-Value型模拟服务器操作类）
+* KV（Key-Value型服务器操作类）
+	* [KVServer](basement_server/kv/KV.md) （远程服务器）
+	* [KVLocal](basement_server/kv/KVLocal.md) （模拟服务器）
+* Queue（队列型服务器操作类）
+	* [QueueServer](basement_server/queue/Queue.md)   （远程服务器）
+	* [QueueLocal](basement_server/queue/QueueLocal.md) （模拟服务器）
 * [Local](basement_server/local/Local.md)  （本地文件操作类）
-* [Queue](basement_server/queue/Queue.md)   （队列型服务器操作类）
-* [QueueLocal](basement_server/queue/QueueLocal.md) （模拟队列型服务器操作类）
 * [SQL](basement_server/sql/SQLPDO.md) （关系数据库操作类）
 
 #### [Components](components/README.md)
@@ -37,10 +39,12 @@
 * [LSE](components/algorithms/LSE.md) （对称加密类）
 * [Exception](components/exception/Exception.md) （自定义异常类）
 * [Layer](components/layer/Layer.md) （架构类，见[LBA说明](https://github.com/linlanye/lin)）
-* [Model](components/orm/Model.md) （数据模型类）
-* [Query](components/orm/Query.md) （数据查询类）
-* [Formatter](components/processor/Formatter.md) （数据格式化类）
-* [Mapper](components/processor/Mapper.md) （数据映射类）
+* ORM（对象关系映射类）
+	* [Model](components/orm/Model.md) （模型）
+	* [Query](components/orm/Query.md) （查询）
+* Processor（数据处理类）
+	* [Formatter](components/processor/Formatter.md) （格式化）
+	* [Mapper](components/processor/Mapper.md) （映射）
 * [Validator](components/validator/Validator.md) （数据校验类）
 * [Response](components/response/Response.md) （响应类）
 * [Route](components/route/Route.md) （路由类）

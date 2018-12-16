@@ -111,7 +111,7 @@ public function setPrefix(string $prefix): bool
 **__construct($DriverOrIndex = null)**: 实例化服务器，并设置自动选择或手动指定
 ```php
 params:
-    object|string $DriverOrIndex=null 为可访问的服务器驱动对象时，则实例使用该对象访问服务器；为字符串时，则作为索引，调用servers.php配置文件里的对应索引的配置实例化
+    object|string $DriverOrIndex=null 为可访问的服务器驱动对象时（满足相应的Server规范），则实例使用该对象访问服务器；为字符串时，则作为索引，调用servers.php配置文件里的对应索引的配置实例化
 ```
 
 **getIndex()**: 获得使用的索引，若传入的是外部指定的驱动，则返回'user'，否则返回当前使用的服务器索引号。
