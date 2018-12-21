@@ -2,7 +2,7 @@ SQLCreator
 ----
 
 ### 说明
-用于给[Model类](Model.md)和[Query类](Query.md)类提供sql语句构建的功能，包含一系列sql语句操作方法，不能单独使用，只能集成在[Model类](Model.md)和[Query类](Query.md)中使用。
+用于给[Model类](Model.md)和[Query类](Query.md)类提供sql语句构建的功能，包含一系列sql语句操作方法，不能单独使用，只能集成在[Model类](Model.md)和[Query类](Query.md)中使用。每一个语句都严格使用了绑定变量。
 
 ---
 
@@ -112,6 +112,25 @@ $Creator->table('orders')->join('users: inner', 'users.id=orders.id'); //sql: in
 //多个join
 $Creator->table('orders')->join(['users'=>'users_id=order.id', 'goods'=>'goods_id=orders_id']); //join orders on users_id=order.id join goods on goods_id=orders_id
 ~~~
+
+* 写操作
+~~~php
+<?php
+
+//新增或更新记录的三种形式
+$Creator->table('orders')->insert('id', 1); //新增id为1的记录，update相同
+$Creator->table('orders')->insert(['id'=>1, 'info'=>'...']); //新增指定id和info字段值记录，update相同
+$Creator->table('orders')->insert(function($Creator){
+	$Creator->table('orders_users')->select('id');
+}); //sql: insert into orders (select id from orders_users)
+
+//使用withData()方法可分批次传入字段数据，以下语句相同
+$Creator->table('orders')->withData(['id'=>1])->withData(['info'=>'...'])->insert();
+$Creator->table('orders')->withData(['id'=>1, 'info'=>'...'])->insert();
+~~~
+
+//删除记录
+$Creator->table('orders')->where('id', 1)->delete(); //sql: delete from orders where id=1
 ---
 
 
@@ -119,17 +138,21 @@ $Creator->table('orders')->join(['users'=>'users_id=order.id', 'goods'=>'goods_i
 
 #### 列表
 ~~~php
-public function select(string $fields = ''): object
-public function one(string $fields = ''): object
-public function max(string $field): object
-public function min(string $field): object
-public function sum(string $field): object
-public function avg(string $field): object
-public function count(string $field = '*'): object
-public function insert($data = null, $value = null): object
-public function update($data = null, $value = null): object
-public function replace($data = null, $value = null): object
-public function delete(): object
+
+//操作终止方法
+public function select(string $fields = '')
+public function one(string $fields = '')
+public function max(string $field)
+public function min(string $field)
+public function sum(string $field)
+public function avg(string $field)
+public function count(string $field = '*')
+public function insert($data = null, $value = null): int
+public function update($data = null, $value = null): int
+public function replace($data = null, $value = null): int
+public function delete(): int
+
+//连贯操作
 public function union(string $type = ''): object
 public function intersect(string $type = ''): object
 public function except(string $type = ''): object
@@ -143,13 +166,3 @@ public function having($condition, $value = null): object
 public function join($condition, string $expression = null): object
 public function withData(array $data, bool $notOverride = false): object
 ~~~
-
-#### 详细说明
-
-**()**:
-```php
-params:
-    string $param 参数名
-return
-	mixed|null 失败返回null
-```
