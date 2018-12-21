@@ -92,7 +92,7 @@ $Creator->where('id: in', [1, 3]); //sql：where id between (1, 3)
 $Creator->where('status: isNull'); //sql：where status is null
 
 //多条件，所有条件默认为and连接，若需or方式，则需显示指定
-$Creator->where([['id'=>1], 'or', 'status: notNull']); //sql: where id=1 or status is not null
+$Creator->where(['id' => 1, 'or', 'status: notNull']); //sql: where id=1 or status is not null
 
 //更复杂的多条件连接，每加一个[]等效于加一个()
 $Creator->where([
