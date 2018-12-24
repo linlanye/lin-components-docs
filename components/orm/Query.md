@@ -74,6 +74,8 @@ $Query->getDriver($Driver); //获得当前实例的驱动
 #### 列表
 ~~~php
 //SQL语句构建方法，参考SQLCreator说明
+
+//内置方法
 public function yield(): object
 public function lastID():  ? string
 public function autoTrans(Closure $Closure) : bool
