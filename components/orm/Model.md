@@ -19,7 +19,7 @@ namespace: `lin\orm\model`
 * 模型的数据对象化和数组化操作互通。如`$Model['id']等价于$Model->id`、`$Model[0]['id']等价于$Model->{0}->id`。
 * 自定义格式化器，用于入库和出库时的数据处理。
 * 自定义宏，用于简化操作和映射操作。如将多个连贯操作映射为单个方法调用或将删除映射为软删除等。
-* 简化[关联模型](RelationModel.md)操作。
+* 简化关联模型操作。
 * 通过宏，关联操作可实三种写入方式混搭，如更新+插入。
 * 提供`setting()`方法。
 
@@ -139,7 +139,71 @@ $Model = new YourModel;
 $Model->update(); //此时抛出异常
 ~~~
 
-* 关联模型，[点击查看](RelationModel.md)
+* 关联模型
+	* 只考虑主从关系，简化为主模型的关联主字段**（master key）**和从模型的关联从字段**（slave key）**，并且任何时候都只关心主模型。
+	* 单向定义，如`用户`-`订单`关系，只需定义`用户`到`订单`的关系即可，无需定义`订单`到`用户`的关系。
+	* 关联操作分为`select`、`insert`、`update`、`delete`四种类型，可以定义各自的映射操作，并且互不影响。
+	* 对复杂关联，只需对相应的操作进行映射。如一对一查询，则定义`select`即可。
+	* 定义关联模型只需调用`setReltion()`编写相应参数即可。
+~~~php
+<?php
+
+//定义
+class Users extends Model
+{
+	protected function setting(){
+
+		//定义一个简单关系
+		$this->setRelation('order', [
+			'class' => 'Orders', //关联的从模型类名
+			'mk' =>'order_id', //主模型（Users）的关联主字段
+			'sk' =>'id', //从模型（Orders）的关联从字段
+		]);
+
+		//定义一个简单的一对一查询关系
+		$this->setRelation('order', [
+			...
+
+			//注意：从模型的每一条记录查询都会执行下面的定义，所以需指定where条件
+			//闭包入参为RMap对象和主模型的一条记录的关联主字段值
+			'select' =>function($Map, $mks){
+				return $Map->where('sk', $mks['order_id'])->one();
+			}
+		]);
+
+		//定义一个复杂的远程一对多查询关系
+		$this->setRelation('order', [
+			...
+			'select' =>function($Map, $mks){
+				return $Map->join('user_order', 'user_order.user_id=user.id')->where('sk', $mks['order_id'])->one();
+			}
+		]);
+
+		//对insert、update、delete类似
+		$this->setRelation('order', [
+			...
+			'insert' => function($Map, $mks){
+				return $Map->withData('status', 1)->insert(); //对每个从模型记录插入时添加status字段数据
+			},
+			'update' => function($Map, $mks){ ... }
+			'delete' => function($Map, $mks){ ... }
+		]);
+
+		//还可以定义多层嵌套关联查询
+		$this->setRelation('order', [
+			...
+			'select' => function($Map, $mks){
+				return $Map->withRelation('goods')->one(); //对每一个从模型记录执行一个名为goods的关联查询
+			}
+		]
+	}
+}
+
+//使用
+$Users = Users::withRelation('order')->select();//关联查询
+$Users->withRelation('order')->update(); //关联更新
+~~~
+
 
 ---
 
@@ -278,8 +342,7 @@ $params = [
 
 #### Map对象方法
 用于为模型提供读写操作。
-注意：
-	* `with`开头的方法，都只能一次性使用，下一次使用需继续显示调用。
+注意：`with`开头的方法，都只能一次性使用，下一次使用需继续显示调用。
 
 ~~~php
 <?php
