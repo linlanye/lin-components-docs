@@ -63,7 +63,7 @@ namespace: `lin\orm\model`
 <?php
 
 //需继承后通过编写类及其方法使用
-class YourModel extends Model
+class MyModel extends Model
 {
 	//基本参数
 	protected function setting()
@@ -97,12 +97,12 @@ class YourModel extends Model
 <?php
 
 //按主键查找
-YourModel::find(1); //等价于YourModel::where('user_id', 1)->one();
-YourModel::find(1, 1); //等价于YourModel::where(['user_id'=>1, 'order_id'=>1])->one();
+MyModel::find(1); //等价于MyModel::where('user_id', 1)->one();
+MyModel::find(1, 1); //等价于MyModel::where(['user_id'=>1, 'order_id'=>1])->one();
 
 //注意：one方法返回一个记录(关联数组)，select方法返回多个记录（索引数组）
-$Model = YourModel::one('user_id');
-$Models = YourModel::limit(1)->select('user_id'); //形如[['字段'=>'值']]
+$Model = MyModel::one('user_id');
+$Models = MyModel::limit(1)->select('user_id'); //形如[['字段'=>'值']]
 
 //将模型数据转为数组
 $Model->toArray(); //['user_id'=>1]
@@ -113,7 +113,7 @@ $Model->delete(); //自动使用上述定义的delete宏，此时等价于$Model
 $Model->withoutMacro('delete')->delete(); //取消宏delete，使用原有delete方法
 
 //使用格式化器，需显示指定
-YourModel::withFormatter('read')->select('content');
+MyModel::withFormatter('read')->select('content');
 
 //取消多个宏或使用多个格式化器使用 ',' 隔开
 $Model->withoutMacro('macro1, macro2')->withFormatter('formatter1, formatter2');
@@ -135,7 +135,7 @@ $Models->setStrictTrans()->update();
 //所有写操作都只返回影响记录数
 
 //缺少主键数据时，更新和删除会抛出异常
-$Model = new YourModel;
+$Model = new MyModel;
 $Model->update(); //此时抛出异常
 ~~~
 
