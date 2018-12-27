@@ -140,14 +140,6 @@ return
 **::layer()**: 获得层实例
 ```php
 params:
-    string $layer 目标层对象，命名空间前缀为配置项设置，满足psr-4方式调用更深目录的实例对象
-return
-	object 目标层实例
-```
-
-**::layer()**: 获得层实例
-```php
-params:
     string $layer 目标层类名，命名空间前缀为配置项设置，满足psr-4方式调用更深目录的类
 return
 	object 目标层实例
