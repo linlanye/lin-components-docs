@@ -58,6 +58,6 @@ namespace: `lin\session`
 ~~~php
 <?php
 
-//一行代码即可
+//一行代码即可，其后依旧使用$_SESSION变量读写
 Session::run();
 ~~~
