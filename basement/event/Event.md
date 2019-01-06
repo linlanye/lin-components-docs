@@ -52,6 +52,9 @@ Event::one('lin','callback'); //绑定一次性事件lin
 //清除事件
 Event::clean('lin'); //清空lin事件
 Event::clean(); //清空所有事件
+
+//重置
+Event::reset(); //清除数据并可重新加载事件文件
 ~~~
 
 
@@ -66,6 +69,7 @@ Event::clean(); //清空所有事件
 public static function run(? string $files = '*'): bool
 public static function one(string $event, callable $callable): bool
 public static function clean(string $event = ''): bool
+public static function reset(): bool
 ~~~
 
 #### 详细说明
@@ -73,7 +77,7 @@ public static function clean(string $event = ''): bool
 **::run()**: 自动加载指定事件文件
 ```php
 params:
-    ? string $files='*' 加载配置项path下的文件或目录，支持通配符 “*” 和目录 “/”，默认加载所有，传入null则不加载
+    ? string $files='*' 加载配置项path下的文件或目录，文件匹配规则参见glob()函数$pattern参数说明，加载多个使用 “,” 分割，null则不加载。
 return:
     bool 是否成功
 ```
@@ -91,6 +95,14 @@ return:
 ```php
 params:
     string $event='' 事件名，空则清除所有
+return:
+    bool 是否成功
+```
+
+**::reset()**: 重置
+```php
+params:
+    void
 return:
     bool 是否成功
 ```

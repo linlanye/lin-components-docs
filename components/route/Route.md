@@ -120,6 +120,10 @@ Route::run(null);
 //关闭路由并执行回调
 Route::off(function(){});
 
+//清除缓存
+Route::clearCache(); //清除所有
+Route::clearCache('my_route1, my_route2'); //指定清除my_route1, my_route2两个缓存
+
 //重置，使路由可反复执行
 Route::reset();
 
@@ -135,6 +139,7 @@ Route::reset();
 public static function run( ? string $files = '*') : bool
 public static function off(callable $callable = null)
 public static function getCreator(): object
+public static function clearCache(string $files = '*'): bool
 public static function reset(): bool
 
 //路由规则构建器
@@ -148,7 +153,7 @@ public function create(array $rules, string $methods = 'GET, POST'): bool
 **::run()**: 加载路由规则，并执行路由
 ```php
 params:
-	string|null $files='*' 加载的文件名，使用 '*' 加载所有，','加载多个， '/'结尾加载目录下所有文件(如'dir/')，null则不加载。
+	string|null $files='*' 加载配置项path下的文件或目录，文件匹配规则参见glob()函数$pattern参数说明，加载多个使用 “,” 分割，null则不加载。
 return
 	bool 执行中断或未执行返回false，其余返回true
 ```
@@ -167,6 +172,14 @@ params:
 	void
 return
 	object 路由构建器实例
+```
+
+**::clearCache()**: 清除指定缓存
+```php
+params:
+	string $files='*' 待清除的原路由文件名，清除多个使用 “,” 分割，文件匹配规则参见glob()函数$pattern参数说明。
+return
+	bool
 ```
 
 **::reset()**: 重置，使路由可反复执行

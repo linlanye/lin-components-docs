@@ -210,7 +210,7 @@ public function assign(string $name, $value): object
 public function show(string $view): void
 public function getContents(string $view): string
 public function getData(): array
-
+public static function clearCache(string $files = '*'): bool
 ~~~
 
 #### 详细说明
@@ -254,4 +254,12 @@ params:
 	void
 return
 	array 已分配的模板变量
+```
+
+**::clearCache()**: 清除指定缓存
+```php
+params:
+	string $files='*' 待清除的原视图文件名，清除多个使用 “,” 分割，文件匹配规则参见glob()函数$pattern参数说明。
+return
+	bool
 ```
