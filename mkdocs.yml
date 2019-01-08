@@ -33,7 +33,7 @@ nav:
             Lang（语言映射类）: basement/lang/Lang.md
             Event（事件类）: basement/event/Event.md
             Log（日志类）: basement/log/Log.md
-            Request（请求类）: basement/event/Event.md
+            Request（请求类）: basement/request/Request.md
         Basement Server组件:
             总览: basement_server/README.md
             KV（Key-Value服务器）:
@@ -48,10 +48,13 @@ nav:
             总览: components/README.md
             LSE（对称加密类）: components/algorithms/LSE.md
             Exception（自定义异常类）: components/exception/Exception.md
-            Layer（架构类）: components/layer/Layer.md
+            Layer（架构类）:
+                Layer（LBA架构类）: components/layer/Layer.md
+                Flow（流程控制类）: components/layer/Flow.md
             ORM（对象关系映射类）:
-               Model（模型类）: components/orm/Model.md
-               Query（查询类）: components/orm/Model.md
+                Model（模型类）: components/orm/Model.md
+                Query（查询类）: components/orm/Query.md
+                SQLCreator（SQL语句构建类）: components/orm/SQLCreator.md
             Processor（数据处理类）:
                Formatter（格式化类）: components/processor/Formatter.md
                Function（格式化函数）: components/processor/Function.md
@@ -62,13 +65,13 @@ nav:
             Response（响应类）: components/response/Response.md
             Route（路由类）: components/route/Route.md
             Security（安全类）: components/security/Security.md
+            Session（自定义session类）: components/session/Session.md
             URL（url构建类）: components/url/URL.md
             View（视图类）: components/view/View.md
     - basement项目:
         总览: docs_basement/README.md
-        核心(class):
-            Linker: docs_basement/Linker.md
-        标准组件(trait):
+        Linker（核心类）: docs_basement/Linker.md
+        标准组件（trait）:
             Config: docs_basement/Config.md
             Debug: docs_basement/Debug.md
             Event: docs_basement/Event.md

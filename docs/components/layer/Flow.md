@@ -14,48 +14,48 @@ Flow类说明
 
 class Controller extends Layer
 {
-	//开启流程的地方
-	public function index()
-	{
-		//初始数据
-		$data = 0;
+    //开启流程的地方
+    public function index()
+    {
+        //初始数据
+        $data = 0;
 
-		//流程执行
-		$Flow = self::flow([
-			'Controller.flow1', //执行顺序为flow1、flow2、flow3
-			'Controller.flow2'
-			'Controller.flow3'
-		], $data);
-		$Flow->data; //值为2，flow2方法中调用了terminal()提前终止执行
+        //流程执行
+        $Flow = self::flow([
+            'Controller.flow1', //执行顺序为flow1、flow2、flow3
+            'Controller.flow2'
+            'Controller.flow3'
+        ], $data);
+        $Flow->data; //值为2，flow2方法中调用了terminal()提前终止执行
 
-		//获得执行细节
-		$Flow->getDetails(); //返回[['app/layer/Controller', 'flow1'], ['app/layer/Controller', 'flow2']] 命名空间前缀来自Layer的配置项
-	}
+        //获得执行细节
+        $Flow->getDetails(); //返回[['app/layer/Controller', 'flow1'], ['app/layer/Controller', 'flow2']] 命名空间前缀来自Layer的配置项
+    }
 
-	//先执行
-	public function flow1($Flow)
-	{
-		... //代码
-		$Flow->data; //此时为0
-		$Flow->data = 1;
-		... //代码
-	}
-	//再执行
-	public function flow2($Flow)
-	{
-		... //代码
-		$Flow->data; //此时为1
-		$Flow->data = 2;
-		$Flow->terminal(); //设置提前终止标记
-		... //其余代码，继续执行完
-	}
-	//flow2已设置终止，则此方法不再执行
-	public function flow3($Flow)
-	{
-		... //代码
-		$Flow->data = 3;
-		... //代码
-	}
+    //先执行
+    public function flow1($Flow)
+    {
+        ... //代码
+        $Flow->data; //此时为0
+        $Flow->data = 1;
+        ... //代码
+    }
+    //再执行
+    public function flow2($Flow)
+    {
+        ... //代码
+        $Flow->data; //此时为1
+        $Flow->data = 2;
+        $Flow->terminal(); //设置提前终止标记
+        ... //其余代码，继续执行完
+    }
+    //flow2已设置终止，则此方法不再执行
+    public function flow3($Flow)
+    {
+        ... //代码
+        $Flow->data = 3;
+        ... //代码
+    }
 }
 
 
@@ -95,7 +95,7 @@ params:
 params:
     void
 return
-	array 数组元素形如['类名', '方法名']
+    array 数组元素形如['类名', '方法名']
 ```
 
 **isTerminal()**: 当前执行是否已为终点
@@ -103,7 +103,7 @@ return
 params:
     void
 return
-	bool 是否已为终点
+    bool 是否已为终点
 ```
 
 **reset()**: 重置流对象当不清除其携带数据，使得可以重复执行流程
@@ -111,5 +111,5 @@ return
 params:
     void
 return
-	bool 是否已为终点
+    bool 是否已为终点
 ```

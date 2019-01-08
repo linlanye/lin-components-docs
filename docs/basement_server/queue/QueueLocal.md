@@ -23,7 +23,7 @@ namespace: `lin\basement\queue`
 
 * basement部分，[点击查看](https://github.com/linlanye/basement)
 * 扩展功能：
-	* 调节模拟服务器相关参数。
+    * 调节模拟服务器相关参数。
 
 
 #### 配置项

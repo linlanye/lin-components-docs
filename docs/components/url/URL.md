@@ -86,9 +86,9 @@ public static function reset(): bool
 ```php
 params:
     string $path        原始url
-	array  $params=null 需要并入url中的参数
+    array  $params=null 需要并入url中的参数
 return
-	string
+    string
 ```
 
 **::getStatic()**: 生成资源专用的静态url地址，url生成风格来自配置项`static.path`的返回值，当该配置项为非回调时则返回原值
@@ -96,7 +96,7 @@ return
 params:
     string $path 原始url
 return
-	string
+    string
 ```
 
 **::getParameters()**: 获得有效域名和入口脚本名参数
@@ -104,13 +104,13 @@ return
 params:
     void
 return
-	array 格式形如['domin' => '当前站点域名', 'script' => '当前入口脚本名']
+    array 格式形如['domin' => '当前站点域名', 'script' => '当前入口脚本名']
 ```
 
 **::reset()**: 重置，使得配置项可以重新读入
 ```php
 params:
-	void
+    void
 return
-	bool
+    bool
 ```

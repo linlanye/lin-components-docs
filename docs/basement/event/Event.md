@@ -12,9 +12,9 @@ namespace: `lin\basement\Event`
 
 * basement部分，[点击查看](https://github.com/linlanye/basement)
 * 扩展功能：
-	* 绑定一次性事件。
-	* 自动读取指定事件文件。
-	* 清空数据。
+    * 绑定一次性事件。
+    * 自动读取指定事件文件。
+    * 清空数据。
 
 
 #### 配置项

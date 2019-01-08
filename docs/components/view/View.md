@@ -65,48 +65,48 @@ namespace: `lin\view`
 ##### 基本语法
 ~~~html
 <html>
-	<!--输出模板变量-->
-	{:var}
-	{:$var}
+    <!--输出模板变量-->
+    {:var}
+    {:$var}
 
-	<!--输出函数值-->
-	{:md5($var)}
+    <!--输出函数值-->
+    {:md5($var)}
 
-	<!--if语句 -->
-	{if ($var ==' lin')}
-		<p>lin框架</p>
-	{elseif}
-		<p>简单</p>
-	{else}
-		<p>高效</p>
-	{/if}
+    <!--if语句 -->
+    {if ($var ==' lin')}
+        <p>lin框架</p>
+    {elseif}
+        <p>简单</p>
+    {else}
+        <p>高效</p>
+    {/if}
 
-	<!--while语句 -->
-	{while ($var ==' lin')}
-		<p>lin框架</p>
-	{/while}
+    <!--while语句 -->
+    {while ($var ==' lin')}
+        <p>lin框架</p>
+    {/while}
 
-	<!--while语句 -->
-	{while ($var ==' lin')}
-		<p>lin框架</p>
-	{/while}
+    <!--while语句 -->
+    {while ($var ==' lin')}
+        <p>lin框架</p>
+    {/while}
 
-	<!--foreach语句-->
-	{foreach ($array as $k=>$v)}
-		<p>{:v}</p>
-	{/foreach}
+    <!--foreach语句-->
+    {foreach ($array as $k=>$v)}
+        <p>{:v}</p>
+    {/foreach}
 
-	<!--switch语句-->
-	{switch ($var)}
-		{case 'lin'}
-			<p>lin框架</p>
-			{break}
-		{default}
-			<p>高效</p>
-	{/switch}
+    <!--switch语句-->
+    {switch ($var)}
+        {case 'lin'}
+            <p>lin框架</p>
+            {break}
+        {default}
+            <p>高效</p>
+    {/switch}
 
 
-	<!--其他php语法和原生一致，只需在左右界定符中编写即可-->
+    <!--其他php语法和原生一致，只需在左右界定符中编写即可-->
 </html>
 ~~~
 
@@ -124,24 +124,24 @@ namespace: `lin\view`
 假设parent.php文件内容如下
 ~~~html
 <html>
-	<p>我是父页面</p>
-	<p>{LOCATION}</p> <!--继承点-->
+    <p>我是父页面</p>
+    <p>{LOCATION}</p> <!--继承点-->
 </html>
 ~~~
 
 假设child.php文件内容如下
 ~~~html
 <html>
-	<p>我是子页面</p>
-	{EXTENDS parent} <!--继承标识，可放在任意位置-->
+    <p>我是子页面</p>
+    {EXTENDS parent} <!--继承标识，可放在任意位置-->
 </html>
 ~~~
 
 则解析chilid.php文件最终生成样式如下
 ~~~html
 <html>
-	<p>我是父页面</p>
-	<p>我是子页面</p>
+    <p>我是父页面</p>
+    <p>我是子页面</p>
 </html>
 ~~~
 
@@ -156,17 +156,17 @@ namespace: `lin\view`
 假设my_view.php文件内容如下
 ~~~html
 <html>
-	<p>lin框架</p>
-	{INCLUDE child}
+    <p>lin框架</p>
+    {INCLUDE child}
 </html>
 ~~~
 
 则解析后生成样式如下
 ~~~html
 <html>
-	<p>lin框架</p>
-	<p>我是父页面</p>
-	<p>我是子页面</p>
+    <p>lin框架</p>
+    <p>我是父页面</p>
+    <p>我是子页面</p>
 </html>
 ~~~
 
@@ -181,9 +181,9 @@ namespace: `lin\view`
 ~~~html
 <html>
 {STATIC}
-	{foreach ($array as $v)}
-		<p>{:v}</p> <!--$array为['lin框架', '简单', '高效']-->
-	{/foreach}
+    {foreach ($array as $v)}
+        <p>{:v}</p> <!--$array为['lin框架', '简单', '高效']-->
+    {/foreach}
 {/STATIC}
 </html>
 ~~~
@@ -191,9 +191,9 @@ namespace: `lin\view`
 则解析后生成样式如下
 ~~~html
 <html>
-	<p>lin框架</p>
-	<p>简单</p>
-	<p>高效</p>
+    <p>lin框架</p>
+    <p>简单</p>
+    <p>高效</p>
 </html>
 ~~~
 
@@ -220,46 +220,46 @@ public static function clearCache(string $files = '*'): bool
 params:
     array $data 以键名为模板变量名，键值为变量值
 return
-	$this
+    $this
 ```
 
 **assign()**: 分配一个模板变量。
 ```php
 params:
-	string $name  分配的视图模板变量名
-	mixed  $value 变量值
+    string $name  分配的视图模板变量名
+    mixed  $value 变量值
 return
-	$this
+    $this
 ```
 
 **show()**: 解析目标视图并显示，同时清空分配的视图模板变量。
 ```php
 params:
-	string $view 视图名
+    string $view 视图名
 return
-	void
+    void
 ```
 
 **getContents()**: 解析目标视图并获得解析后的内容，同时清空分配的视图模板变量。
 ```php
 params:
-	string $view 视图名
+    string $view 视图名
 return
-	string 视图解析后的内容
+    string 视图解析后的内容
 ```
 
 **getData()**: 获得已分配的模板变量。
 ```php
 params:
-	void
+    void
 return
-	array 已分配的模板变量
+    array 已分配的模板变量
 ```
 
 **::clearCache()**: 清除指定缓存
 ```php
 params:
-	string $files='*' 待清除的原视图文件名，清除多个使用 “,” 分割，文件匹配规则参见glob()函数$pattern参数说明。
+    string $files='*' 待清除的原视图文件名，清除多个使用 “,” 分割，文件匹配规则参见glob()函数$pattern参数说明。
 return
-	bool
+    bool
 ```

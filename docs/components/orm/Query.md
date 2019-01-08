@@ -53,8 +53,8 @@ $Query->lastID(); //返回参考Basement的ServerSQL::lastID()
 
 //使用自动事务，事务中所有写操都成功才提交，否则回滚
 $Query->autoTrans(function($Query){
-	$Query->insert(['data' => 2]); //插入新记录
-	$Query->where('id', 1)->update(['data' => 1]); //更新id为1的data字段
+    $Query->insert(['data' => 2]); //插入新记录
+    $Query->where('id', 1)->update(['data' => 1]); //更新id为1的data字段
 })
 
 //获得生成器，用于多记录查询结果时迭代
@@ -90,7 +90,7 @@ public function getDriver(): object
 params:
     void
 return
-	object 一个生成器，该生成器的返回值是影响的记录数
+    object 一个生成器，该生成器的返回值是影响的记录数
 ```
 
 **lastID()**: 获得最近自增ID
@@ -98,7 +98,7 @@ return
 params:
     void
 return
-	string|null 失败返回null
+    string|null 失败返回null
 ```
 
 **autoTrans()**: 开始自动事务，所有写操作全部成功才提交，否则回滚。
@@ -106,21 +106,21 @@ return
 params:
     Closure 用于编写多个操作逻辑，闭包的入参为当前Query实例，在闭包中书写的任意写操作必须全部成功才提交，否则回滚
 return
-	bool 事务成功与否
+    bool 事务成功与否
 ```
 
 **setDriver()**: 设置当前实例的驱动
 ```php
 params:
-	object 一个满足Basement的ServerSQL标准的对象
+    object 一个满足Basement的ServerSQL标准的对象
 return
-	$this
+    $this
 ```
 
 **getDriver()**: 获得当前实例的驱动
 ```php
 params:
-	void
+    void
 return
-	object 当前使用的驱动，为一个满足Basement的ServerSQL标准的对象
+    object 当前使用的驱动，为一个满足Basement的ServerSQL标准的对象
 ```

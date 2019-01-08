@@ -56,7 +56,7 @@ params:
     string $secretKey 用于加解密的密钥
     int    $times=5   加密次数，不建议修改，一次加解密该值需一致。
 return
-	mixed|null 失败返回null
+    mixed|null 失败返回null
 ```
 
 **encrypt()**: 加密函数
@@ -65,7 +65,7 @@ params:
     string $data        待加密数据
     bool   $isRaw=false 是否输出原始二进制数据，否则输出16进制字符串
 return
-	string|null 失败返回null
+    string|null 失败返回null
 ```
 
 **decrypt()**: 解密函数
@@ -74,5 +74,5 @@ params:
     string $data        待解密数据
     bool   $isRaw=false 待解密数据是否为原始二进制，否为16进制
 return
-	string|null 失败返回null
+    string|null 失败返回null
 ```

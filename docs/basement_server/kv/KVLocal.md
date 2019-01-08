@@ -25,7 +25,7 @@ namespace: `lin\basement\kv`
 
 * basement部分，[点击查看](https://github.com/linlanye/basement)
 * 扩展功能：
-	* 调节模拟服务器相关参数。
+    * 调节模拟服务器相关参数。
 
 
 
@@ -48,9 +48,9 @@ KVLocal::setBlockParameters(['size'=>107, 'factor'=>1.2]); //设置一个数据�
 
 //设置与最大值相关的参数
 KVLocal::setMaxParameters([
-	'scan_time' => 0.1, //设置线性扫描时允许执行的最大时间为0.1s
-	'file_size' => 0x7fffffff, //设置一个数据文件最大为2gb
-	'hash' => 85899343, //设置最大hash值为85899343（非冲突下的最大键数）
+    'scan_time' => 0.1, //设置线性扫描时允许执行的最大时间为0.1s
+    'file_size' => 0x7fffffff, //设置一个数据文件最大为2gb
+    'hash' => 85899343, //设置最大hash值为85899343（非冲突下的最大键数）
 ]);
 ~~~
 

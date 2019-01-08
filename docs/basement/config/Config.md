@@ -12,9 +12,9 @@ namespace: `lin\basement\config`
 
 * basement部分，[点击查看](https://github.com/linlanye/basement)
 * 扩展功能：
-	* 动态加载，并可使用 `.` 对配置项进行多级读写。
-	* 清空指定配置文件。
-	* 重置所有配置。
+    * 动态加载，并可使用 `.` 对配置项进行多级读写。
+    * 清空指定配置文件。
+    * 重置所有配置。
 
 
 
@@ -85,7 +85,7 @@ return:
 **::reset()**: 重置
 ```php
 params:
-	void
+    void
 return:
     bool 是否成功
 ```

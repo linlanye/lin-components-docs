@@ -57,40 +57,40 @@ namespace: `lin\validator`
 //1.定义规则
 class MyValidator extends Validator
 {
-	//在setting方法中定义不同的规则，以下用$data表示待校验数组
-	protected function setting()
-	{
-		//定义一个校验规则，使用类中校验函数
-		$this->setRule('my_rule', [
-			//must模式，字段不存在则返回失败
-			'id: must' => 'isInt', //校验$data['id']是否为整数
+    //在setting方法中定义不同的规则，以下用$data表示待校验数组
+    protected function setting()
+    {
+        //定义一个校验规则，使用类中校验函数
+        $this->setRule('my_rule', [
+            //must模式，字段不存在则返回失败
+            'id: must' => 'isInt', //校验$data['id']是否为整数
 
-			//should模式，字段存在才校验，否则返回成功
-			'info: should' => 'isString', //$data['info']是否为字符串
+            //should模式，字段存在才校验，否则返回成功
+            'info: should' => 'isString', //$data['info']是否为字符串
 
-			//may模式，字段存在且非空才校验，否则返回成功
-			'ip: may' => 'isIP',//$data['ip']存在且非空时，校验是否为ip地址
+            //may模式，字段存在且非空才校验，否则返回成功
+            'ip: may' => 'isIP',//$data['ip']存在且非空时，校验是否为ip地址
 
-			//校验多个入参
-			'a, b' => 'gt', //$data['a']是否大于$data['b']
-		]);
+            //校验多个入参
+            'a, b' => 'gt', //$data['a']是否大于$data['b']
+        ]);
 
-		//定义一个校验规则，使用回调或闭包
-		$this->setRule('my_rule2', [
-			'status' => function($v){
-				return is_int($v);
-			},
-		]);
+        //定义一个校验规则，使用回调或闭包
+        $this->setRule('my_rule2', [
+            'status' => function($v){
+                return is_int($v);
+            },
+        ]);
 
-		//定义校验失败时候的信息
-		$this->setRule('my_rule3', [
-			'status' => ['isInt', 'error status'], //校验失败时候，错误信息为'error status'
-			'pwd' => [function($v){return strlen($v)>5;}, 'error password'], //错误信息为'error password'
-		]);
+        //定义校验失败时候的信息
+        $this->setRule('my_rule3', [
+            'status' => ['isInt', 'error status'], //校验失败时候，错误信息为'error status'
+            'pwd' => [function($v){return strlen($v)>5;}, 'error password'], //错误信息为'error password'
+        ]);
 
-		//同理可定义多个不同规则
-		...
-	}
+        //同理可定义多个不同规则
+        ...
+    }
 }
 
 
@@ -134,15 +134,15 @@ final public function getErrors(): array
 ```php
 params:
     string $name  规则名
-	array  $rules 规则数组，键名为原数据中的字段名和校验模式，键值为校验函数和校验失败信息，多个校验入参字段用 ',' 隔开，深层字段使用 '.' 访问。
+    array  $rules 规则数组，键名为原数据中的字段名和校验模式，键值为校验函数和校验失败信息，多个校验入参字段用 ',' 隔开，深层字段使用 '.' 访问。
 return
-	bool
+    bool
 
 $rules一般形式如：
 [
-	'key1.key2, key3.key4: mode' => 'callable|method', //优先级为：回调函数> 类自定义函数 > 类内置函数
-	或
-	'key1.key2, key3.key4: mode' => ['callable|method', 'error info']
+    'key1.key2, key3.key4: mode' => 'callable|method', //优先级为：回调函数> 类自定义函数 > 类内置函数
+    或
+    'key1.key2, key3.key4: mode' => ['callable|method', 'error info']
 ]
 ```
 
@@ -151,22 +151,22 @@ $rules一般形式如：
 params:
     string $names 本次校验使用的规则名，多个规则使用 ',' 隔开
 return
-	$this
+    $this
 ```
 
 **valid()**: 校验数据
 ```php
 params:
-	array $data           待校验的数据
-	bool  $weakMode=false 是否为弱模式，弱模式下任一字段通过则全部通过，否则必须所有字段通过才通过
+    array $data           待校验的数据
+    bool  $weakMode=false 是否为弱模式，弱模式下任一字段通过则全部通过，否则必须所有字段通过才通过
 return
-	bool 是否校验成功
+    bool 是否校验成功
 ```
 
 **getErrors()**: 获取校验失败的字段错误信息，来源于`setRule()`时指定，未指定则来自配置项`default.info`。下一次校验时，将被重新生成。
 ```php
 params:
-	void
+    void
 return
-	array 格式形如 ['失败字段' => '失败信息']
+    array 格式形如 ['失败字段' => '失败信息']
 ```

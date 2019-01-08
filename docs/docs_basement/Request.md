@@ -13,7 +13,7 @@ namepsace: `basement`
 <?php
 //先注册
 Linker::register([
-	'Request' => 'your_request_class',
+    'Request' => 'your_request_class',
 ]);
 
 //设置某个方法的所有参数
@@ -76,88 +76,88 @@ public static function getIP() :  ? string
 **::set()**: 设置某个请求方法的所有参数
 ```php
 params:
-	string $method     请求方法名
-	array  $parameters 请求参数
+    string $method     请求方法名
+    array  $parameters 请求参数
 return:
-	bool 是否设置成功
+    bool 是否设置成功
 ```
 
 **::setCurrent()**: 设置当前请求方法的所有参数
 ```php
 params:
-	array $parameters 请求参数
+    array $parameters 请求参数
 return:
-	bool 是否设置成功
+    bool 是否设置成功
 ```
 
 **::get()**: 获得某个请求方法的所有参数
 ```php
 params:
-	string $method 请求方法名
+    string $method 请求方法名
 return:
-	array|null 失败或不存在则返回null
+    array|null 失败或不存在则返回null
 ```
 
 **::getCurrent()**: 获得当前请求方法的所有参数
 ```php
 params:
-	void
+    void
 return:
-	array|null 失败或不存在则返回null
+    array|null 失败或不存在则返回null
 ```
 
 **::getHeader()**: 获得当前某个请求头
 ```php
 params:
-	string $header header名
+    string $header header名
 return:
-	string|null 失败或不存在则返回null
+    string|null 失败或不存在则返回null
 ```
 
 **::getMethod()**: 获得当前请求方法名
 ```php
 params:
-	void
+    void
 return:
-	string|null 请求方法名且应为大写，如POST，GET等，无则返回null，如CLI模式下
+    string|null 请求方法名且应为大写，如POST，GET等，无则返回null，如CLI模式下
 ```
 
 **::getHost()**: 获得当前请求的域名，应是完整的域名
 ```php
 params:
-	void
+    void
 return:
-	string|null 域名且应为小写，无则返回null，如CLI模式下
+    string|null 域名且应为小写，无则返回null，如CLI模式下
 ```
 
 **::getPort()**: 获得当前请求的端口
 ```php
 params:
-	void
+    void
 return:
-	int|null 端口号，无则返回null，如CLI模式下
+    int|null 端口号，无则返回null，如CLI模式下
 ```
 
 **::getURL()**: 获得当前请求的相对url，该url不应保护站点名称
 ```php
 params:
-	void
+    void
 return:
-	string|null 请求方法名，如POST，GET等，无则返回null，如CLI模式下
+    string|null 请求方法名，如POST，GET等，无则返回null，如CLI模式下
 ```
 
 **::getProtocol()**: 获得当前请求的协议
 ```php
 params:
-	void
+    void
 return:
-	string|null 请求方法名且应为大写，如HTTP，HTTPS等，无则返回null，如CLI模式下
+    string|null 请求方法名且应为大写，如HTTP，HTTPS等，无则返回null，如CLI模式下
 ```
 
 **::getIP()**: 获得当前发起请求的客户端IP
 ```php
 params:
-	void
+    void
 return:
-	string|null ip地址，无则返回null，如CLI模式下
+    string|null ip地址，无则返回null，如CLI模式下
 ```

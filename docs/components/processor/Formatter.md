@@ -59,34 +59,34 @@ namespace: `lin\processor`
 //1.定义规则
 class MyFormatter extends Formatter
 {
-	//在setting方法中定义不同的规则，以下用$raw表示原始数据
-	protected function setting()
-	{
-		//定义一个格式化规则，使用类中格式化函数
-		$this->setRule('my_rule', [
-			//must模式，若原字段不存在，则调用配置项中的缺省值
-			'id: must' => 'toInt', //强制将$raw['id']格式化为整数
+    //在setting方法中定义不同的规则，以下用$raw表示原始数据
+    protected function setting()
+    {
+        //定义一个格式化规则，使用类中格式化函数
+        $this->setRule('my_rule', [
+            //must模式，若原字段不存在，则调用配置项中的缺省值
+            'id: must' => 'toInt', //强制将$raw['id']格式化为整数
 
-			//should模式，字段存在才格式化
-			'countdown: should' => 'toCountdown', //$raw['countdown']存在时，格式化为友好的倒计时格式
+            //should模式，字段存在才格式化
+            'countdown: should' => 'toCountdown', //$raw['countdown']存在时，格式化为友好的倒计时格式
 
-			//may模式，字段存在且非空才格式化
-			'ip: may' => 'num2IP',//$raw['ip']存在且非空时，格式化为ip地址
+            //may模式，字段存在且非空才格式化
+            'ip: may' => 'num2IP',//$raw['ip']存在且非空时，格式化为ip地址
 
-			//格式化多个入参
-			'info, symbol' => 'stripSymbol', //剔除$raw['info']中的$raw['symbol']字符
-		]);
+            //格式化多个入参
+            'info, symbol' => 'stripSymbol', //剔除$raw['info']中的$raw['symbol']字符
+        ]);
 
-		//定义一个格式化规则，使用回调或闭包
-		$this->setRule('my_rule2', [
-			'status' => function($value){
-				return 1; //总是格式化为1
-			},
-		]);
+        //定义一个格式化规则，使用回调或闭包
+        $this->setRule('my_rule2', [
+            'status' => function($value){
+                return 1; //总是格式化为1
+            },
+        ]);
 
-		//同理可定义多个不同规则
-		...
-	}
+        //同理可定义多个不同规则
+        ...
+    }
 }
 
 
@@ -128,13 +128,13 @@ final public function format(array $raw, bool $onlyFormatted = false): array
 ```php
 params:
     string $name  规则名
-	array  $rules 规则数组，键名为原数据中的字段名和格式化模式，键值为格式化函数，多个格式化入参字段用 ',' 隔开，深层字段使用 '.' 访问。
+    array  $rules 规则数组，键名为原数据中的字段名和格式化模式，键值为格式化函数，多个格式化入参字段用 ',' 隔开，深层字段使用 '.' 访问。
 return
-	bool
+    bool
 
 $rules一般形式如：
 [
-	'key1.key2, key3.key4: mode' => 'callable|method', //优先级为：回调函数> 类自定义函数 > 类内置函数
+    'key1.key2, key3.key4: mode' => 'callable|method', //优先级为：回调函数> 类自定义函数 > 类内置函数
 ]
 ```
 
@@ -143,14 +143,14 @@ $rules一般形式如：
 params:
     string $names 本次格式化使用的规则名，多个规则使用 ',' 隔开
 return
-	$this
+    $this
 ```
 
 **format()**: 格式化数据。
 ```php
 params:
-	array $raw                 待格式化的数据
-	bool  $onlyFormatted=false 是否只保留格式化处理过的数据，否则包含原始未格式化的数据，默认为否
+    array $raw                 待格式化的数据
+    bool  $onlyFormatted=false 是否只保留格式化处理过的数据，否则包含原始未格式化的数据，默认为否
 return
-	array 格式化后的数据，未指定规则时返回原数据
+    array 格式化后的数据，未指定规则时返回原数据
 ```

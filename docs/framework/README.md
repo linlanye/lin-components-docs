@@ -1,4 +1,4 @@
-# Lin 1.0
+y# Lin 1.0
 [![Latest Stable Version](https://poser.pugx.org/lin/lin/v/stable)](https://packagist.org/packages/lin/lin)
 [![Total Downloads](https://poser.pugx.org/lin/lin/downloads)](https://packagist.org/packages/lin/lin)
 [![PHP Version](https://img.shields.io/badge/php-%3E%3D7.2-8892BF.svg)](http://www.php.net/)
@@ -38,7 +38,7 @@ your_app
 │  │
 │  ├─affix                          摆件目录
 │  │  ├─event                       事件目录
-│  │  ├─lang      	                语言包目录
+│  │  ├─lang                          语言包目录
 │  │  ├─response                    响应目录
 │  │  │  ├─jsonxml                  json和xml的模版目录
 │  │  │  └─view                     视图页面目录
@@ -52,7 +52,7 @@ your_app
 │  │  └─validator                   数据验证器目录
 │  │
 │  ├─config                         配置目录
-│  │  ├─lin-servers.php  		    服务器配置
+│  │  ├─lin-servers.php              服务器配置
 │  │  ├─lin-servers.production.php  服务器配置（生产环境）
 │  │  ├─lin.php                     组件配置
 │  │  └─lin.production.php          组件配置（生产环境）

@@ -60,22 +60,22 @@ composer require basement/basement 1.0
 ## 文档
 核心(class)
 
-* [Linker](docs/Linker.md)
+* [Linker](Linker.md)
 
 标准组件(trait)
 
-* [Config](docs/Config.md)
-* [Debug](docs/Debug.md)
-* [Event](docs/Event.md)
-* [Exception](docs/Exception.md)
-* [Lang](docs/Lang.md)
-* [Log](docs/Log.md)
-* [Request](docs/Request.md)
-* [ServerFile](docs/ServerFile.md)
-* [ServerKV](docs/ServerKV.md)
-* [ServerLocal](docs/ServerLocal.md)
-* [ServerQueue](docs/ServerQueue.md)
-* [ServerSQL](docs/ServerSQL.md)
+* [Config](Config.md)
+* [Debug](Debug.md)
+* [Event](Event.md)
+* [Exception](Exception.md)
+* [Lang](Lang.md)
+* [Log](Log.md)
+* [Request](Request.md)
+* [ServerFile](ServerFile.md)
+* [ServerKV](ServerKV.md)
+* [ServerLocal](ServerLocal.md)
+* [ServerQueue](ServerQueue.md)
+* [ServerSQL](ServerSQL.md)
 
 
 ## 组件开发

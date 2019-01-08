@@ -12,9 +12,9 @@ namespace: `lin\basement\Lang`
 
 * basement部分，[点击查看](https://github.com/linlanye/basement)
 * 扩展功能：
-	* 实例化时可指定标识名。
-	* 清空映射数据。
-	* 重置，清空所有数据和自动加载规则。
+    * 实例化时可指定标识名。
+    * 清空映射数据。
+    * 重置，清空所有数据和自动加载规则。
 
 
 
@@ -92,7 +92,7 @@ return:
 **::reset()**: 清空所有数据和自动加载规则
 ```php
 params:
-	void
+    void
 return:
     bool 是否成功
 ```

@@ -13,13 +13,13 @@ namespace: `lin\basement\request`
 * basement部分，[点击查看](https://github.com/linlanye/basement)
 * 扩展功能：
     * $_GET、 $_POST和类方法绑定，通过任何一个修改，另一个都发生变化。
-	* 映射类属性为当前请求参数。
-	* 模拟任何类型的请求。
-	* 使用 `.` 对参数的多级读写。
-	* 获取有效的上传数据。
-	* 获取上传错误信息。
-	* 清空指定方法的数据。
-	* 重置并清空所有寒暑假。
+    * 映射类属性为当前请求参数。
+    * 模拟任何类型的请求。
+    * 使用 `.` 对参数的多级读写。
+    * 获取有效的上传数据。
+    * 获取上传错误信息。
+    * 清空指定方法的数据。
+    * 重置并清空所有寒暑假。
 
 
 #### 配置项
@@ -70,22 +70,22 @@ $Request->params(['post.id' => 'value']); //等价于$_POST['id'] = 'value'
 //获取有效的上传数据，数据来源于 $_FILES 和配置项 'uploads' 的共同作用
 $uploads = Request::getUploads();
 $uploads = [
-	'file1' => [
-		['name' => '重命名后的名字', 'type' => '文件类型', 'size' => '文件大小',
-	    'file' => '包含完整路径',],
-	    ...
-	],
-	...
+    'file1' => [
+        ['name' => '重命名后的名字', 'type' => '文件类型', 'size' => '文件大小',
+        'file' => '包含完整路径',],
+        ...
+    ],
+    ...
 ];//uploads形式
 
 
 //获取上传错误信息
 $errors = Request::getUploadsError();
 $errors = [
-	'file1' => [
-		['错误码, 见下述']
-	],
-	...
+    'file1' => [
+        ['错误码, 见下述']
+    ],
+    ...
 ];//errors形式
 
 //清除目标方法数据
@@ -150,7 +150,7 @@ const UPLOAD_CANT_MOVE         = 11; //无法移动文件
 params:
     string $param 参数名
 return
-	mixed|null 失败返回null
+    mixed|null 失败返回null
 ```
 
 **__set()**: 通过实例属设置当前请求方法的参数
@@ -159,7 +159,7 @@ params:
     string $param 参数名
     mixed  $value 参数值
 return
-	bool 是否成功
+    bool 是否成功
 ```
 
 **__isset()**: 通过isset()方法查看实例属性对应的参数是否存在
@@ -167,7 +167,7 @@ return
 params:
     string $param 参数名
 return
-	bool 是否存在
+    bool 是否存在
 ```
 
 **params()**: 读写任意参数，支持使用 `.` 多级调用和 `*` 通配符
@@ -175,7 +175,7 @@ return
 params:
     string|array $stringOrArray='*'  为字符串时则读取（空返回null，*返回所有参数），数组时则写入。
 return
-	mixed|null|bool 设置时返回bool，读取时候返回mixed或null
+    mixed|null|bool 设置时返回bool，读取时候返回mixed或null
 ```
 
 **::getUploads()**: 获得上传文件信息，和配置项`uploads`搭配使用
@@ -183,7 +183,7 @@ return
 params:
     void
 return
-	array|null 失败返回null，成功格式形如['file1' => [['name' => '重命名后的名字', 'type' => '文件类型', 'size' => '文件大小','file' => '包含完整路径']]]
+    array|null 失败返回null，成功格式形如['file1' => [['name' => '重命名后的名字', 'type' => '文件类型', 'size' => '文件大小','file' => '包含完整路径']]]
 ];
 ```
 
@@ -192,7 +192,7 @@ return
 params:
     void
 return
-	array|null 失败返回null，成功格式形如['file1' => [['错误码，见上述常量属性']]]
+    array|null 失败返回null，成功格式形如['file1' => [['错误码，见上述常量属性']]]
 ];
 ```
 
@@ -201,7 +201,7 @@ return
 params:
     void
 return
-	string|null 原始的请求方法名，失败返回null
+    string|null 原始的请求方法名，失败返回null
 ];
 ```
 
@@ -216,7 +216,7 @@ return:
 **::reset()**: 重置
 ```php
 params:
-	void
+    void
 return:
     bool 是否成功
 ```

@@ -14,7 +14,7 @@
 lin\basement\config\Config;
 ```
 
-### [Debug](debug/Debug.md)	  （调试类）
+### [Debug](debug/Debug.md)      （调试类）
 ```
 lin\basement\debug\Debug;
 ```

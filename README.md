@@ -5,53 +5,53 @@
 
 本文档为php框架[Lin](https://github.com/linlanye/lin)所使用的组件[Lin-components](https://github.com/linlanye/lin-components)的说明文档。文档内容分为以下三个部分：
 
-* [basement一般组件](basement/README.md)
-* [basement的服务器组件](basement_server/README.md)
-* [一般组件](components/README.md)
+* [basement一般组件](docs/basement/README.md)
+* [basement的服务器组件](docs/basement_server/README.md)
+* [一般组件](docs/components/README.md)
 
 （basement项目参见：[https://github.com/linlanye/basement](https://github.com/linlanye/basement)）
 
 
 ## 组件列表
 
-#### [Basement](basement/README.md)
+#### [Basement](docs/basement/README.md)
 
-* [Config](basement/config/Config.md) （配置类）
-* [Debug](basement/debug/Debug.md)	  （调试类）
-* [Event](basement/event/Event.md)    （事件类）
-* [Exception](basement/exception/GeneralException.md) （扩展异常类）
-* [Lang](basement/lang/Lang.md) （语言映射类）
-* [Log](basement/log/Log.md) （日志类）
-* [Request](basement/request/Request.md) (请求类)
+* [Config](docs/basement/config/Config.md) （配置类）
+* [Debug](docs/basement/debug/Debug.md)      （调试类）
+* [Event](docs/basement/event/Event.md)    （事件类）
+* [Exception](docs/basement/exception/GeneralException.md) （扩展异常类）
+* [Lang](docs/basement/lang/Lang.md) （语言映射类）
+* [Log](docs/basement/log/Log.md) （日志类）
+* [Request](docs/basement/request/Request.md) (请求类)
 
-#### [Basement Server](basement_server/README.md)
+#### [Basement Server](docs/basement_server/README.md)
 
 * KV（Key-Value型服务器操作类）
-	* [KVServer](basement_server/kv/KV.md) （远程服务器）
-	* [KVLocal](basement_server/kv/KVLocal.md) （模拟服务器）
+    * [KVServer](docs/basement_server/kv/KV.md) （远程服务器）
+    * [KVLocal](docs/basement_server/kv/KVLocal.md) （模拟服务器）
 * Queue（队列型服务器操作类）
-	* [QueueServer](basement_server/queue/Queue.md)   （远程服务器）
-	* [QueueLocal](basement_server/queue/QueueLocal.md) （模拟服务器）
-* [Local](basement_server/local/Local.md)  （本地文件操作类）
-* [SQL](basement_server/sql/SQLPDO.md) （关系数据库操作类）
+    * [QueueServer](docs/basement_server/queue/Queue.md)   （远程服务器）
+    * [QueueLocal](docs/basement_server/queue/QueueLocal.md) （模拟服务器）
+* [Local](docs/basement_server/local/Local.md)  （本地文件操作类）
+* [SQL](docs/basement_server/sql/SQLPDO.md) （关系数据库操作类）
 
-#### [Components](components/README.md)
+#### [Components](docs/components/README.md)
 
-* [LSE](components/algorithms/LSE.md) （对称加密类）
-* [Exception](components/exception/Exception.md) （自定义异常类）
-* [Layer](components/layer/Layer.md) （架构类，见[LBA说明](https://github.com/linlanye/lin)）
+* [LSE](docs/components/algorithms/LSE.md) （对称加密类）
+* [Exception](docs/components/exception/Exception.md) （自定义异常类）
+* [Layer](docs/components/layer/Layer.md) （架构类，见[LBA说明](https://github.com/linlanye/lin)）
 * ORM（对象关系映射类）
-	* [Model](components/orm/Model.md) （模型）
-	* [Query](components/orm/Query.md) （查询）
+    * [Model](docs/components/orm/Model.md) （模型）
+    * [Query](docs/components/orm/Query.md) （查询）
 * Processor（数据处理类）
-	* [Formatter](components/processor/Formatter.md) （格式化）
-	* [Mapper](components/processor/Mapper.md) （映射）
-* [Validator](components/validator/Validator.md) （数据校验类）
-* [Response](components/response/Response.md) （响应类）
-* [Route](components/route/Route.md) （路由类）
-* [Security](components/security/Security.md) （安全类）
-* [URL](components/url/URL.md) （url构建类）
-* [View](components/view/View.md) （视图类）
+    * [Formatter](docs/components/processor/Formatter.md) （格式化）
+    * [Mapper](docs/components/processor/Mapper.md) （映射）
+* [Validator](docs/components/validator/Validator.md) （数据校验类）
+* [Response](docs/components/response/Response.md) （响应类）
+* [Route](docs/components/route/Route.md) （路由类）
+* [Security](docs/components/security/Security.md) （安全类）
+* [URL](docs/components/url/URL.md) （url构建类）
+* [View](docs/components/view/View.md) （视图类）
 
 
 ## 约定

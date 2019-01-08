@@ -13,8 +13,8 @@ namespace: `lin\basement\debug`
 * basement部分，[点击查看](https://github.com/linlanye/basement)
 * 扩展功能：
     * 实例化时指定调试标识名。
-	* 使用两个相同`flag('flag_name')`代替`beginFlag('flag_name')和endFlag('flag_name')`。
-	* 清空数据。
+    * 使用两个相同`flag('flag_name')`代替`beginFlag('flag_name')和endFlag('flag_name')`。
+    * 清空数据。
 
 
 

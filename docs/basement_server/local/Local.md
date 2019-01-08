@@ -17,7 +17,7 @@ namespace: `lin\basement\local`
 
 * basement部分，[点击查看](https://github.com/linlanye/basement)
 * 扩展功能：
-	* 实例化时指定目录路径
+    * 实例化时指定目录路径
 
 
 
@@ -33,10 +33,10 @@ namespace: `lin\basement\local`
 ~~~php
 <?php
 'server'=>[
-	'local' => [
-	    'path'  => 'data/path', //数据存放路径
-	    'debug' => true, //调试模式
-	],
+    'local' => [
+        'path'  => 'data/path', //数据存放路径
+        'debug' => true, //调试模式
+    ],
 ]
 ~~~
 

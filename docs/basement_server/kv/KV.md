@@ -27,8 +27,8 @@ KV类用于操作Key-Value型服务器，全部实现集群访问。
 
 * basement部分，[点击查看](https://github.com/linlanye/basement)
 * 扩展功能：
-	* 采用一致性哈希算法操作服务器集群。
-	* 获得当前使用的服务器索引号、当前的服务器驱动、当前的服务器类型名。
+    * 采用一致性哈希算法操作服务器集群。
+    * 获得当前使用的服务器索引号、当前的服务器驱动、当前的服务器类型名。
 
 
 
@@ -45,24 +45,24 @@ KV类用于操作Key-Value型服务器，全部实现集群访问。
 <?php
 
 'server'=>[
-	'kv'    => [
-	    'driver'  => [ //可使用的不同驱动配置
-	        'memcached' => [ //使用memcached服务器
-	            'use' => '*', //使用所有服务器
-	        ],
-	        'redis'     => [ //使用redis服务器
-	            'use' => 'kv*', //使用所有kv标识的服务器
-	        ],
-	        'local'     => [ //使用本地模拟服务器的配置
-	            'path' =>  'data/kv', //模拟数据存放路径
-	        ],
-	    ],
-	    'prefix'  => '', //键前缀
-	    'default' => [
-	        'life' => 3600 * 24 * 7, //默认的缓存时间，单位s
-	    ],
-	    'debug'   => true, //调试模式
-	]
+    'kv'    => [
+        'driver'  => [ //可使用的不同驱动配置
+            'memcached' => [ //使用memcached服务器
+                'use' => '*', //使用所有服务器
+            ],
+            'redis'     => [ //使用redis服务器
+                'use' => 'kv*', //使用所有kv标识的服务器
+            ],
+            'local'     => [ //使用本地模拟服务器的配置
+                'path' =>  'data/kv', //模拟数据存放路径
+            ],
+        ],
+        'prefix'  => '', //键前缀
+        'default' => [
+            'life' => 3600 * 24 * 7, //默认的缓存时间，单位s
+        ],
+        'debug'   => true, //调试模式
+    ]
 ]
 
 ~~~
@@ -117,31 +117,31 @@ params:
 **getIndex()**: 获得使用的索引，若传入的是外部指定的驱动，则返回'user'，否则返回当前使用的服务器索引号。
 ```php
 params:
-	void
+    void
 return:
-	string|null 失败或未使用返回null
+    string|null 失败或未使用返回null
 ```
 
 **getDriver()**: 获得当前使用的服务器驱对象。
 ```php
 params:
-	void
+    void
 return:
-	object|null 失败或未使用返回null
+    object|null 失败或未使用返回null
 ```
 
 **getServerName()**: 获得当前服务器名，memcached或redis
 ```php
 params:
-	void
+    void
 return:
-	string|null 使用memcached则返回memcached，使用redis则返回redis。失败或未使用返回null
+    string|null 使用memcached则返回memcached，使用redis则返回redis。失败或未使用返回null
 ```
 
 **setPrefix()**: 设置当前键前缀
 ```php
 params:
-	string $prefix 键前缀
+    string $prefix 键前缀
 return:
-	bool 是否成功
+    bool 是否成功
 ```

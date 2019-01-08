@@ -62,9 +62,9 @@ namespace: `lin\route`
 ##### 创建规则
 * 若未创建规则或未匹配到规则，路由会执行通用规则——来自配置项 `general` 的回调函数，若该项不为回调函数，则不执行。
 * 规则为数组，形如`['匹配地址' => 执行规则 ]`，有以下三种格式：
-	* '相对url' => '类名.方法名'
-	* '相对url' => '闭包'
-	* '相对url' => ['类名.方法名', '类名.方法名', '闭包'] ***（按数组元素依次执行）***
+    * '相对url' => '类名.方法名'
+    * '相对url' => '闭包'
+    * '相对url' => ['类名.方法名', '类名.方法名', '闭包'] ***（按数组元素依次执行）***
 * 在`类名.方法名`的格式中，类名会自动加上来自配置项`namespace.main`的命名空间前缀，但若其首个字符为 '`\`'，则不使用命名空间前缀。
 ~~~php
 <?php
@@ -74,19 +74,19 @@ $Creator = Route::getCreator();
 
 //构建仅匹配GET请求的路由
 $Creator->create([
-	'/' => 'Index.index', //匹配到请求地址为 '/' 时，执行app\layer\Index::index()
-	'/closure' => function(){}, //匹配时执行闭包
-	'/multi' => ['Index.index', 'Index.index2'], //匹配时依次执行两个类方法
+    '/' => 'Index.index', //匹配到请求地址为 '/' 时，执行app\layer\Index::index()
+    '/closure' => function(){}, //匹配时执行闭包
+    '/multi' => ['Index.index', 'Index.index2'], //匹配时依次执行两个类方法
 ], 'GET');
 
 //构建动态路由，匹配到的参数会进入GET参数，若执行为闭包，则闭包的入参为匹配到的参数
 $Creator->create([
-	'/{id}-{page}' => function($id, $page){}, //匹配到形如/x-x格式的url时，将其解析为$_GET['id']和$_GET['page']参数，并执行闭包，闭包的入参为这两者
+    '/{id}-{page}' => function($id, $page){}, //匹配到形如/x-x格式的url时，将其解析为$_GET['id']和$_GET['page']参数，并执行闭包，闭包的入参为这两者
 ]);
 
 //构建带前置和后置执行的路由
 $Creator->withPre('Middleware.before')->withPost('Middleware.after')->create([
-	'/middleware' => 'Index.index' //匹配时依次执行Middleware::before(), Index::index(), Middleware::after()
+    '/middleware' => 'Index.index' //匹配时依次执行Middleware::before(), Index::index(), Middleware::after()
 ]);
 
 //前置和后置执行可以有多个，用数组表示
@@ -153,41 +153,41 @@ public function create(array $rules, string $methods = 'GET, POST'): bool
 **::run()**: 加载路由规则，并执行路由
 ```php
 params:
-	string|null $files='*' 加载配置项path下的文件或目录，文件匹配规则参见glob()函数$pattern参数说明，加载多个使用 “,” 分割，null则不加载。
+    string|null $files='*' 加载配置项path下的文件或目录，文件匹配规则参见glob()函数$pattern参数说明，加载多个使用 “,” 分割，null则不加载。
 return
-	bool 执行中断或未执行返回false，其余返回true
+    bool 执行中断或未执行返回false，其余返回true
 ```
 
 **::off()**: 关闭路由，并执行回调
 ```php
 params:
-	callable|null $callable=null 执行回调，null时不执行
+    callable|null $callable=null 执行回调，null时不执行
 return
-	mixed|bool  回调的返回，或未执行回调时候返回true
+    mixed|bool  回调的返回，或未执行回调时候返回true
 ```
 
 **::getCreator()**: 获得路由构建器实例
 ```php
 params:
-	void
+    void
 return
-	object 路由构建器实例
+    object 路由构建器实例
 ```
 
 **::clearCache()**: 清除指定缓存
 ```php
 params:
-	string $files='*' 待清除的原路由文件名，清除多个使用 “,” 分割，文件匹配规则参见glob()函数$pattern参数说明。
+    string $files='*' 待清除的原路由文件名，清除多个使用 “,” 分割，文件匹配规则参见glob()函数$pattern参数说明。
 return
-	bool
+    bool
 ```
 
 **::reset()**: 重置，使路由可反复执行
 ```php
 params:
-	void
+    void
 return
-	bool
+    bool
 ```
 ----
 
@@ -196,24 +196,24 @@ return
 **withPre()**: 使当前`create()`定义的规则包含全局前置执行，一次性使用。
 ```php
 params:
-	string|Closure|array $pre 执行规则，string格式为'Class.method'。若为数组，则按数组元素执行，元素格式为string或Closure
+    string|Closure|array $pre 执行规则，string格式为'Class.method'。若为数组，则按数组元素执行，元素格式为string或Closure
 return
-	bool
+    bool
 ```
 
 **withPost()**: 使当前`create()`定义的规则包含全局后置执行，一次性使用。
 ```php
 params:
-	string|Closure|array $post 同上
+    string|Closure|array $post 同上
 return
-	bool
+    bool
 ```
 
 **create()**: 创建路由执行规则
 ```php
 params:
-	array  $rules               规则数组，形如['url' => '执行规则']，执行规则格式见上诉
-	string $methods='GET, POST' 与规则绑定的请求方法，若规则只绑定GET方法，则使用POST请求同一地址不会被匹配
+    array  $rules               规则数组，形如['url' => '执行规则']，执行规则格式见上诉
+    string $methods='GET, POST' 与规则绑定的请求方法，若规则只绑定GET方法，则使用POST请求同一地址不会被匹配
 return
-	bool 规则为空时返回false，否则返回true
+    bool 规则为空时返回false，否则返回true
 ```

@@ -179,33 +179,33 @@ const INVALID   = 15; //场景无效，包含上诉4种情况
 **::__callStatic()**: 通过静态化方法调用场景构建器区分与场景校验。静态开头则构建相关，否则为校验相关。
 ```php
 params:
-	string $method 构建器方法
-	array  $args   构建器方法入参
+    string $method 构建器方法
+    array  $args   构建器方法入参
 return
-	object 构建器实例
+    object 构建器实例
 ```
 
 **__construct()**: 实例化未指定`id`时为校验临时客户端，否则校验指定客户端。
 ```php
 params:
-	string|null $id=null null时为临时id
+    string|null $id=null null时为临时id
 ```
 
 **check()**: 校验场景。
 ```php
 params:
-	string $scenario 场景名
-	string $token    待校验的token
+    string $scenario 场景名
+    string $token    待校验的token
 return
-	bool 校验是否通过
+    bool 校验是否通过
 ```
 
 **getStatus()**: 获得校验场景后的具体状态码
 ```php
 params:
-	void
+    void
 return
-	int 状态码见上述属性中的描述
+    int 状态码见上述属性中的描述
 ```
 ----
 
@@ -214,41 +214,41 @@ return
 **build()**: 创建一个场景，并可指定该场景的有效期以及加密该场景`token`的复杂度(具体见`password_hash()`)。
 ```php
 params:
-	string $scenario  场景名
-	int    $life=null 场景有效期，null时使用配置项default.life，为0则永不过期
-	int    $cost=null 存储实际token时，需对其加密，表征该加密的复杂度，null时默认为default.cost
+    string $scenario  场景名
+    int    $life=null 场景有效期，null时使用配置项default.life，为0则永不过期
+    int    $cost=null 存储实际token时，需对其加密，表征该加密的复杂度，null时默认为default.cost
 return
-	string|null 创建成功返回token，失败返回null
+    string|null 创建成功返回token，失败返回null
 ```
 
 **destroy()**: 销毁场景。
 ```php
 params:
-	string $scenario 场景名
+    string $scenario 场景名
 return
-	bool 是否销毁成功
+    bool 是否销毁成功
 ```
 
 **withID()**: 指定客户端`id`进行场景构建，一次性使用，若未调用本方法则使用临时客户端`id`。
 ```php
 params:
-	string $id 客户端id名
+    string $id 客户端id名
 return
-	$this
+    $this
 ```
 
 **withToken()**: 指定场景的`token`,若未调用本方法则由系统随机生成。
 ```php
 params:
-	string $token 指定场景的token
+    string $token 指定场景的token
 return
-	$this
+    $this
 ```
 
 **byImage()**: 构建场景并以图片形式输出显示（图片验证码）。
 ```php
 params:
-	array $config=[] 对生成图片验证码使用额外的配置项，具体内容参见配置项 'image'
+    array $config=[] 对生成图片验证码使用额外的配置项，具体内容参见配置项 'image'
 return
-	$this
+    $this
 ```

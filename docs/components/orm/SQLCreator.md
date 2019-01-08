@@ -44,7 +44,7 @@ $Creator->table('users')->fields('id, pwd')->select(); //和上述语句等价
 
 //子语句查询，同理可使用闭包嵌套更多层的子语句
 $Creator->table(function($Creator){
-	$Creator->table('users')->select();
+    $Creator->table('users')->select();
 })->select(); //sql: select * from (select * from users) as lin0
 
 //聚合查询，除下述外，还包括min()、avg()、sum()方法与之类似
@@ -59,7 +59,7 @@ $Creator->table('orders')->fields('user_id, order_id')->group('user_id')->order(
 ~~~
 * 条件语句（**where**和**having**）
 
-	条件语句由三部分构成，为数组形式，形如：['字段:表达式' => '值']，单个条件可以简化为`where('字段:表达式', '值')`，以下示例使用`where()`代表，`having()`相同。
+    条件语句由三部分构成，为数组形式，形如：['字段:表达式' => '值']，单个条件可以简化为`where('字段:表达式', '值')`，以下示例使用`where()`代表，`having()`相同。
 ~~~php
 <?php
 
@@ -82,7 +82,7 @@ $Creator->where('id: in', [1, 2]); //sql：where id in (1, 2)
 
 //exists及notExists，使用子语句或任意标量值
 $Creator->where('exists', function($Creator){
-	$Creator->table('users')->select();
+    $Creator->table('users')->select();
 }); //sql: where exists (select * from users)
 
 //between及notBetween，值应为数组
@@ -96,12 +96,12 @@ $Creator->where(['id' => 1, 'or', 'status: notNull']); //sql: where id=1 or stat
 
 //更复杂的多条件连接，每加一个[]等效于加一个()
 $Creator->where([
-	"f1:neq" => 1, 'or', [["f2" => 1], ["f3:gt" => 1]],
+    "f1:neq" => 1, 'or', [["f2" => 1], ["f3:gt" => 1]],
 ]); //where f1!=1 or ((f2=1) and (f3>1))
 ~~~
 
 * join语句
-	join语句由三部分构成，为数组形式，形如：['表名:连接方式(可选)'=>'连接条件']，单个join可简化为`join('表名:连接方式(可选)', '连接条件')`。连接方式如：`inner`、`nature`、`outer`等。
+    join语句由三部分构成，为数组形式，形如：['表名:连接方式(可选)'=>'连接条件']，单个join可简化为`join('表名:连接方式(可选)', '连接条件')`。连接方式如：`inner`、`nature`、`outer`等。
 ~~~php
 <?php
 
@@ -121,7 +121,7 @@ $Creator->table('orders')->join(['users'=>'users_id=order.id', 'goods'=>'goods_i
 $Creator->table('orders')->insert('id', 1); //新增id为1的记录，update相同
 $Creator->table('orders')->insert(['id'=>1, 'info'=>'...']); //新增指定id和info字段值记录，update相同
 $Creator->table('orders')->insert(function($Creator){
-	$Creator->table('orders_users')->select('id');
+    $Creator->table('orders_users')->select('id');
 }); //sql: insert into orders (select id from orders_users)
 
 //使用withData()方法可分批次传入字段数据，以下语句相同

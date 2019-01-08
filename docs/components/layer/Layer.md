@@ -69,45 +69,45 @@ MVC的Model对应块，View对应LBA的摆件，Controller则对应层。基于M
 //需继承后通过编写类及其方法使用
 class Controller extends Layer
 {
-	//设置使用封装的功能组件
-	protected function setting()
-	{
-		$this->use('http, log, local, queue, kv, sql');
-		//将获得如下对象：
-		//http
+    //设置使用封装的功能组件
+    protected function setting()
+    {
+        $this->use('http, log, local, queue, kv, sql');
+        //将获得如下对象：
+        //http
         $this->Request;
         $this->Response;
         //log
         $this->Log;
         //local
         $this->Local;
- 		//queue
+         //queue
         $this->Queue;
- 		//kv
+         //kv
         $this->KV;
         //sql
         $this->SQL;
         $this->Query;
-	}
+    }
 
-	//使用层、块访问
-	public function index()
-	{
-		//获得层实例
-		self::layer('Controller2'); // 返回app\layer\Controller2实例
+    //使用层、块访问
+    public function index()
+    {
+        //获得层实例
+        self::layer('Controller2'); // 返回app\layer\Controller2实例
 
-		//获得块实例
-		self::block('Block2'); // 返回app\block\Block2实例
-		self::block('Block2', $arg1, $arg2); //以arg1和arg2作为构造参数实例化
-		//获得块类名
-		self::blockName('Block2'); //返回app\block\Block2
+        //获得块实例
+        self::block('Block2'); // 返回app\block\Block2实例
+        self::block('Block2', $arg1, $arg2); //以arg1和arg2作为构造参数实例化
+        //获得块类名
+        self::blockName('Block2'); //返回app\block\Block2
 
-		//流程流水化，依次调用Controller2的index方法和index2方法，入参皆为流实例
-		$Flow = self::flow([
-			'Controller2.index',
-			'Controller2.index2'
-		], $data);
-	}
+        //流程流水化，依次调用Controller2的index方法和index2方法，入参皆为流实例
+        $Flow = self::flow([
+            'Controller2.index',
+            'Controller2.index2'
+        ], $data);
+    }
 }
 ~~~
 
@@ -134,7 +134,7 @@ final protected static function flow(array $layers, $data = null): object
 params:
     string $utils 欲使用的功能，多个用 ',' 隔开，包含http, log, local, queue, kv, sql六类
 return
-	mixed|null 失败返回null
+    mixed|null 失败返回null
 ```
 
 **::layer()**: 获得层实例
@@ -142,7 +142,7 @@ return
 params:
     string $layer 目标层类名，命名空间前缀为配置项设置，满足psr-4方式调用更深目录的类
 return
-	object 目标层实例
+    object 目标层实例
 ```
 
 **::block()**: 获得块实例
@@ -151,7 +151,7 @@ params:
     string $block   目标块类名，命名空间前缀为配置项设置，满足psr-4方式调用更深目录的类
     array  $args=[] 实例化时对构造参数，见php不定参
 return
-	object 目标块实例
+    object 目标块实例
 ```
 
 **::blockName()**: 获得块完整类名
@@ -159,7 +159,7 @@ return
 params:
     string $block 目标块类名，命名空间前缀为配置项设置，满足psr-4方式调用更深目录的类
 return
-	string 目标块的完整类名
+    string 目标块的完整类名
 ```
 
 **::flow()**: 开始流水化流程
@@ -168,5 +168,5 @@ params:
     array $layers    整个执行流程，数组元素为依次执行的层方法，每一个层方法的入参都为Flow对象，满足psr-4方式调用更深目录的类，使用 '.'隔开类名（在前）与方法名（在后）
     mixed $data=null 流携带的数据，默认无
 return
-	Flow 流对象，参加Flow说明
+    Flow 流对象，参加Flow说明
 ```

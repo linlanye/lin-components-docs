@@ -128,7 +128,7 @@ public function show(string $file, string $showName = null): void
 params:
     array|string $header 响应头，数组时批量设置
 return
-	$this
+    $this
 ```
 
 **withStatus()**: 指定响应状态
@@ -136,76 +136,76 @@ return
 params:
     int $status 响应代码
 return
-	$this
+    $this
 ```
 
 **withData()**: 为`json()`、`xml()`、`view()`指定响应数据，多次调用则合并数据
 ```php
 params:
-	array $data 响应数据
+    array $data 响应数据
 return
-	$this
+    $this
 ```
 
 **back()**: 跳回上一页面
 ```php
 params:
-	void
+    void
 ```
 
 **error()**: 显示一个错误页面，该页面来自配置项`view.error`，输出x信息，并停顿x秒后跳回x地址
 ```php
 params:
-	string $info=''        输出信息
-	int    $countdown=null 停顿时间
-	string $url=''         跳转地址
+    string $info=''        输出信息
+    int    $countdown=null 停顿时间
+    string $url=''         跳转地址
 ```
 
 **success()**: 显示一个成功页面，该页面来自配置项`view.success`，输出x信息，并停顿x秒后跳回x地址
 ```php
 params:
-	string $info=''        输出信息
-	int    $countdown=null 停顿时间
-	string $url=''         跳转地址
+    string $info=''        输出信息
+    int    $countdown=null 停顿时间
+    string $url=''         跳转地址
 ```
 
 **redirect()**: 跳转到目标地址
 ```php
 params:
-	string $url='/' 跳转地址
+    string $url='/' 跳转地址
 ```
 
 **json()**: 响应`json`数据
 ```php
 params:
-	string $template=null 响应json时使用的数据模板
-	int    $opt=null      见json_encode() $opt说明
-	int    $depth=null    见json_encode() $depth说明
+    string $template=null 响应json时使用的数据模板
+    int    $opt=null      见json_encode() $opt说明
+    int    $depth=null    见json_encode() $depth说明
 ```
 
 **xml()**: 响应`xml`数据
 ```php
 params:
-	string $template=null  响应xml时使用的数据模板
-	string $xmlHeader=null xml响应头
+    string $template=null  响应xml时使用的数据模板
+    string $xmlHeader=null xml响应头
 ```
 
 **view()**: 响应一个视图，具体的视图操作来自配置项中`view.method`
 ```php
 params:
-	string $template=null 视图页面模板
+    string $template=null 视图页面模板
 ```
 
 **download()**: 将配置项目录`file.path`的某个文件提供给用户下载，并指定该文件的下载名称
 ```php
 params:
-	string $file 		  提供下载的原文件名
-	string $showName=null 向用户显示的文件名，若空则为原文件名
+    string $file           提供下载的原文件名
+    string $showName=null 向用户显示的文件名，若空则为原文件名
 ```
 
 **show()**: 自动根据文件扩展名显示文件或下载文件
 ```php
 params:
-	string $file 		  用于显示的原文件名，显示可为图像、文本。其他情况则转为下载
-	string $showName=null 向用户显示的文件名，若空则为原文件名
+    string $file           用于显示的原文件名，显示可为图像、文本。其他情况则转为下载
+    string $showName=null 向用户显示的文件名，若空则为原文件名
 ```

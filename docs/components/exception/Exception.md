@@ -21,7 +21,7 @@ namespace: `lin\exception\Exception`
 <?php
 
 'exception' => [
-	//异常处理
+    //异常处理
     'exception' => [
         'lang'     => 'both', //多语言显示，空或none为关闭，only为仅用于显示，但日志记录仍为原文，both为都用于显示和日志记录
         'default'  => [
