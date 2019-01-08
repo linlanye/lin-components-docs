@@ -1,0 +1,83 @@
+site_name: Lin文档
+site_url: https://www.lin-php.com
+repo_url: https://github.com/linlanye/lin
+edit_uri: https://github.com/linlanye/lin-docs/edit/master/
+site_description: Lin是一款基于php7.2的高性能、全组件化、极简主义框架。框架层、组件层、应用层三重结构完美分离，应用开发依托全新的架构模式LBA：Layer、Block、Affix，使其更加高效化和弹性化。
+site_author: 林澜叶(linlanye)
+theme:
+    name: material
+    language: 'zh'
+    palette:
+        primary: 'Light Blue'
+        accent: 'Red'
+    font:
+        text: 'sans-serif'
+        code: 'Ubuntu'
+    feature:
+        tabs: true
+    logo: http://img.lin-php.com/linlanye.ico
+nav:
+    - 首页:
+        简介: README.md
+        返回主站: https://www.lin-php.com
+    - 框架:
+        总览: framework/README.md
+        LBA架构: framework/LBA.md
+    - 组件:
+        Basement组件:
+            总览: basement/README.md
+            Config（配置类）: basement/config/Config.md
+            Debug（调试类）: basement/debug/Debug.md
+            Event（事件类）: basement/event/Event.md
+            Exception（扩展异常类）: basement/exception/GeneralException.md
+            Lang（语言映射类）: basement/lang/Lang.md
+            Event（事件类）: basement/event/Event.md
+            Log（日志类）: basement/log/Log.md
+            Request（请求类）: basement/event/Event.md
+        Basement Server组件:
+            总览: basement_server/README.md
+            KV（Key-Value服务器）:
+                KVServer（远程服务器）: basement_server/kv/KV.md
+                KVLocal（模拟服务器）: basement_server/kv/KVLocal.md
+            Queue（队列服务器）:
+                QueueServer（远程服务器）: basement_server/queue/Queue.md
+                QueueLocal（模拟服务器）: basement_server/queue/QueueLocal.md
+            Local（本地文件操作类）: basement_server/local/Local.md
+            SQL（关系数据库操作类）: basement_server/sql/SQLPDO.md
+        常规组件:
+            总览: components/README.md
+            LSE（对称加密类）: components/algorithms/LSE.md
+            Exception（自定义异常类）: components/exception/Exception.md
+            Layer（架构类）: components/layer/Layer.md
+            ORM（对象关系映射类）:
+               Model（模型类）: components/orm/Model.md
+               Query（查询类）: components/orm/Model.md
+            Processor（数据处理类）:
+               Formatter（格式化类）: components/processor/Formatter.md
+               Function（格式化函数）: components/processor/Function.md
+               Mapper（映射类）: components/processor/Mapper.md
+            Validator（数据校验类）:
+                Validator（校验类）: components/validator/Validator.md
+                Function（校验函数）: components/validator/Function.md
+            Response（响应类）: components/response/Response.md
+            Route（路由类）: components/route/Route.md
+            Security（安全类）: components/security/Security.md
+            URL（url构建类）: components/url/URL.md
+            View（视图类）: components/view/View.md
+    - basement项目:
+        总览: docs_basement/README.md
+        核心(class):
+            Linker: docs_basement/Linker.md
+        标准组件(trait):
+            Config: docs_basement/Config.md
+            Debug: docs_basement/Debug.md
+            Event: docs_basement/Event.md
+            Exception: docs_basement/Exception.md
+            Lang: docs_basement/Lang.md
+            Log: docs_basement/Log.md
+            Request: docs_basement/Request.md
+            ServerFile: docs_basement/ServerFile.md
+            ServerKV: docs_basement/ServerKV.md
+            ServerLocal: docs_basement/ServerLocal.md
+            ServerQueue: docs_basement/ServerQueue.md
+            ServerSQL: docs_basement/ServerSQL.md
