@@ -1,7 +1,6 @@
 # Lin1.0 说明文档
 ---
 
-
 ## 简介
 
 本文档为php框架[Lin](https://github.com/linlanye/lin)所使用的组件[Lin-components](https://github.com/linlanye/lin-components)的说明文档。文档内容分为以下三个部分：
