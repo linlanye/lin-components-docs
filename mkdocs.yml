@@ -15,7 +15,7 @@ theme:
     #     code: 'Inconsolata'
     feature:
         tabs: true
-    logo: http://img.lin-php.com/linlanye.ico
+    logo: https://img.lin-php.com/linlanye.ico
 nav:
     - 首页:
         简介: README.md
