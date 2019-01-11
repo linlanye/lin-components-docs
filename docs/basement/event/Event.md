@@ -10,7 +10,7 @@ namespace: `lin\basement\Event`
 
 ### 功能
 
-* basement部分，[点击查看](https://github.com/linlanye/basement)
+* basement部分，[点击查看](../../docs_basement/Event.md)
 * 扩展功能：
     * 绑定一次性事件。
     * 自动读取指定事件文件。

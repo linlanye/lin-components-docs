@@ -10,7 +10,7 @@ namespace: `lin\basement\request`
 
 ### 功能
 
-* basement部分，[点击查看](https://github.com/linlanye/basement)
+* basement部分，[点击查看](../../docs_basement/Request.md)
 * 扩展功能：
     * $_GET、 $_POST和类方法绑定，通过任何一个修改，另一个都发生变化。
     * 映射类属性为当前请求参数。

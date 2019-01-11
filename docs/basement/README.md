@@ -1,7 +1,6 @@
 简介
 ---
-本部分的说明文档是[basement](https://github.com/linlanye/basement)非服务器操作部分组件，
-关于[basement](https://github.com/linlanye/basement)项目说明
+本部分的说明文档是[basement](../docs_basement/README.md)非服务器操作部分组件。
 
 
 

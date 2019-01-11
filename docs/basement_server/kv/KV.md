@@ -25,7 +25,7 @@ KV类用于操作Key-Value型服务器，全部实现集群访问。
 
 ### 功能
 
-* basement部分，[点击查看](https://github.com/linlanye/basement)
+* basement部分，[点击查看](../../docs_basement/ServerKV.md)
 * 扩展功能：
     * 采用一致性哈希算法操作服务器集群。
     * 获得当前使用的服务器索引号、当前的服务器驱动、当前的服务器类型名。

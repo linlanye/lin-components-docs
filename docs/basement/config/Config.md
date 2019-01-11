@@ -10,7 +10,7 @@ namespace: `lin\basement\config`
 
 ### 功能
 
-* basement部分，[点击查看](https://github.com/linlanye/basement)
+* basement部分，[点击查看](../../docs_basement/Config.md)
 * 扩展功能：
     * 动态加载，并可使用 `.` 对配置项进行多级读写。
     * 清空指定配置文件。

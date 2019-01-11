@@ -18,7 +18,7 @@ namespace: `lin\basement\queue`
 
 ### 功能
 
-* basement部分，[点击查看](https://github.com/linlanye/basement)
+* basement部分，[点击查看](../../docs_basement/ServerQueue.md)
 * 扩展功能：
     * 参见[KV](../kv/KV.md)
 

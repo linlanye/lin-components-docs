@@ -10,7 +10,7 @@ namespace: `lin\basement\log`
 
 ### 功能
 
-* basement部分，[点击查看](https://github.com/linlanye/basement)
+* basement部分，[点击查看](../../docs_basement/Log.md)
 * 扩展功能：
     * 在生命期期结束后一次性写入。
     * 可使用队列、关系型数据库、本地文件存储日志。
@@ -61,6 +61,6 @@ namespace: `lin\basement\log`
 
 #### 其他
 
-参见basement。[点击查看](https://github.com/linlanye/basement)
+参见basement[点击查看](../../docs_basement/Log.md)。
 
 

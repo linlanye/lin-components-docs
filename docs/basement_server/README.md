@@ -1,4 +1,4 @@
-此部分为Lin的[basement](https://github.com/linlanye/basement) 服务器操作部分组件
+此部分为Lin的[basement](../docs_basement/README.md) 服务器操作部分组件
 ---
 
 ### 说明

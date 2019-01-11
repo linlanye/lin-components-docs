@@ -10,7 +10,7 @@ namespace: `lin\basement\debug`
 
 ### 功能
 
-* basement部分，[点击查看](https://github.com/linlanye/basement)
+* basement部分，[点击查看](../../docs_basement/Debug.md)
 * 扩展功能：
     * 实例化时指定调试标识名。
     * 使用两个相同`flag('flag_name')`代替`beginFlag('flag_name')和endFlag('flag_name')`。

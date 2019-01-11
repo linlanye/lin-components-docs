@@ -15,7 +15,7 @@ namespace: `lin\basement\local`
 
 ### 功能
 
-* basement部分，[点击查看](https://github.com/linlanye/basement)
+* basement部分，[点击查看](../../docs_basement/ServerLocal.md)
 * 扩展功能：
     * 实例化时指定目录路径
 

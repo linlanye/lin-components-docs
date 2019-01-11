@@ -23,7 +23,7 @@ namespace: `lin\basement\kv`
 
 ### 功能
 
-* basement部分，[点击查看](https://github.com/linlanye/basement)
+* basement部分，[点击查看](../../docs_basement/ServerKV.md)
 * 扩展功能：
     * 调节模拟服务器相关参数。
 

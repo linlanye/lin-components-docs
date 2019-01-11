@@ -10,4 +10,4 @@ namespace: `lin\basement\exception`
 
 ### 功能
 
-* 只含basement部分，[点击查看](https://github.com/linlanye/basement)
+* 只含basement部分，[点击查看](../../docs_basement/Exception.md)

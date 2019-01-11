@@ -10,7 +10,7 @@ namespace: `lin\basement\Lang`
 
 ### 功能
 
-* basement部分，[点击查看](https://github.com/linlanye/basement)
+* basement部分，[点击查看](../../docs_basement/Lang.md)
 * 扩展功能：
     * 实例化时可指定标识名。
     * 清空映射数据。
