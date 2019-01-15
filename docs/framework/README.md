@@ -1,4 +1,4 @@
-y# Lin 1.0
+# Lin 1.0
 [![Latest Stable Version](https://poser.pugx.org/lin/lin/v/stable)](https://packagist.org/packages/lin/lin)
 [![Total Downloads](https://poser.pugx.org/lin/lin/downloads)](https://packagist.org/packages/lin/lin)
 [![PHP Version](https://img.shields.io/badge/php-%3E%3D7.2-8892BF.svg)](http://www.php.net/)
