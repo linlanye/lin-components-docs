@@ -39,10 +39,10 @@ nav:
             KV（Key-Value服务器）:
                 KVServer（远程服务器）: basement_server/kv/KV.md
                 KVLocal（模拟服务器）: basement_server/kv/KVLocal.md
+            Local（本地文件操作类）: basement_server/local/Local.md
             Queue（队列服务器）:
                 QueueServer（远程服务器）: basement_server/queue/Queue.md
                 QueueLocal（模拟服务器）: basement_server/queue/QueueLocal.md
-            Local（本地文件操作类）: basement_server/local/Local.md
             SQL（关系数据库操作类）: basement_server/sql/SQLPDO.md
         常规组件:
             总览: components/README.md
