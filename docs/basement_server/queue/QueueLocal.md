@@ -28,7 +28,7 @@ namespace: `lin\basement\queue`
 
 #### 配置项
 
-[参加Queue](Queue.md)
+[参见Queue](Queue.md)
 
 #### 使用
 

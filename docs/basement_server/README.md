@@ -37,6 +37,17 @@ lin\basement\server\queue\QueueLocal;
 lin\basement\server\sql\SQLPDO;
 ```
 
+### 共同方法
+所有服务器组件都有一部分共同的方法如下，具体使用[参见KV](kv/KV.md)中的说明。
+
+```php
+public function __construct($DriverOrIndex = null)
+public function getIndex():  ? string
+public function getDriver() :  ? object
+public function getServerName():  ? string
+```
+
+
 ### 配置项
 
 所有服务器组件皆为`动态配置`，使用两个配置文件。

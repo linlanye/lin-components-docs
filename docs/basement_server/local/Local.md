@@ -28,7 +28,7 @@ namespace: `lin\basement\local`
 分为两部分：
 
 * `servers`相关部分，[点击查看](../README.md)。
-* `lin`相关部分如下：
+* 组件部分如下：
 
 ~~~php
 <?php
