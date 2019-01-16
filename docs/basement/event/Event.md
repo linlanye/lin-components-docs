@@ -1,6 +1,6 @@
 Event类
 ----
-namespace: `lin\basement\Event`
+namespace: `lin\basement\event`
 
 包含如下类：
 
@@ -40,13 +40,12 @@ Event::run();
 Event::run('*');
 
 //加载配置项path中的指定文件或指定目录
-Event::run('file, folder/'); //同时加载path下的file文件和folder目录里的所有文件
+Event::run('file, folder/*'); //同时加载path下的file文件和folder目录里的所有文件
 
 //不加载任何文件
 Event::run(null);
 
 //绑定一次性事件
-
 Event::one('lin','callback'); //绑定一次性事件lin
 
 //清除事件

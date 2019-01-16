@@ -69,7 +69,7 @@ public static function reset(): bool
 ```php
 params:
     string $name 配置名
-    array  $arg  只取arg的首个元素，若为字符串，则读取配置，若为数组则写入配置，支持使用 “.” 多级调用。
+    array  $arg  只取$arg的首个元素，若为字符串，则读取配置，若为数组则写入配置，支持使用 “.” 多级调用。
 return:
     array|null 失败或不存在则返回null
 ```

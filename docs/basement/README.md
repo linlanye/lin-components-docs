@@ -1,7 +1,7 @@
 简介
 ---
-本部分的说明文档是[basement](../docs_basement/README.md)非服务器操作部分组件。
-
+本部分的组件文档是[basement](../docs_basement/README.md)非服务器部分组件。
+包含组件如下：
 
 
 

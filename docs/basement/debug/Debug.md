@@ -52,11 +52,11 @@ new Debug('lin');
 Debug::run();
 
 //清除标识调试数据
-Debug::clean('lin'); //清空标识为的lin的调试数据
+Debug::clean('lin'); //清空标识为lin的调试数据
 Debug::clean(); //清空所有调试数据
 
 //清除flag里的系统数据
-Debug::cleanFlag('lin'); //清空flag为的lin的系统数据
+Debug::cleanFlag('lin'); //清空flag为lin的系统数据
 Debug::cleanFlag(); //清空所有flag数据
 ~~~
 

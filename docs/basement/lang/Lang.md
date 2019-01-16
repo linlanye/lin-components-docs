@@ -1,6 +1,6 @@
 Lang类
 ----
-namespace: `lin\basement\Lang`
+namespace: `lin\basement\lang`
 
 包含如下类：
 
