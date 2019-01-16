@@ -50,6 +50,13 @@ $Driver = new Local('/path');
 
 //实例化时使用配置项路径
 $Driver = new Local;
+
+//删除文件为非空目录时，不予删除
+$Driver->remove('not_empty_dir'); //不会删除
+
+//删除时候指定空字符串，则会删除path目录。
+$Driver->setPath('not_empty_dir');
+$Driver->remove(''); //目录not_empty_dir被删除
 ~~~
 
 
