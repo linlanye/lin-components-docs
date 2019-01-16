@@ -4,14 +4,13 @@ namespace: `lin\basement\queue`
 
 包含如下类：
 
-* **lin\basement\queue\QueueLocal** ([参见QueueLocal说明](QueueLocal.md))
 * **lin\basement\queue\QueueRedis**
 
 ---
 
 ### 说明
 
-`lin\basement\queue\QueueRedis`也是采用一致性哈希算法实现集群访问，具体说明参考[KV](../kv/KV.md)。不同的时只在**实例化和调用setName()**根据队列名选择不同服务器。
+`lin\basement\queue\QueueRedis`也是采用一致性哈希算法实现集群访问，具体说明参考[KV](../kv/KV.md)的使用。不同的时只在**实例化和调用setName()**根据队列名选择不同服务器。
 
 
 ---
@@ -20,7 +19,7 @@ namespace: `lin\basement\queue`
 
 * basement部分，[点击查看](../../docs_basement/ServerQueue.md)
 * 扩展功能：
-    * 参见[KV](../kv/KV.md)
+    * 多服务器和集群功能，参见[KV](../kv/KV.md)的使用
 
 
 

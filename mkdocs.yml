@@ -84,5 +84,6 @@ nav:
             ServerLocal: docs_basement/ServerLocal.md
             ServerQueue: docs_basement/ServerQueue.md
             ServerSQL: docs_basement/ServerSQL.md
-    - 版本记录: Version.md
+    - 版本记录:
+        V1: Version1.md
     - 返回主站: https://www.lin-php.com

@@ -14,7 +14,7 @@ namespace: `lin\basement\queue`
 使用本地文件模拟的队列服务器，实现高速队列服务器的操作，适用于无队列服务器环境，
 功能同Queue类([参见Queue说明](Queue.md))。
 
-但由于是模拟服务器，不具备集群功能，即不具备[Queue](Queue.md)中罗列的方法。
+由于是模拟服务器，不具备[Queue](Queue.md)中罗列的方法。
 
 
 ---
@@ -28,7 +28,7 @@ namespace: `lin\basement\queue`
 
 #### 配置项
 
-见[Queue](Queue.md)
+[参加Queue](Queue.md)
 
 #### 使用
 
@@ -41,12 +41,12 @@ $Driver = new QueueLocal;
 $Driver->close(); //关闭所有队列连接
 $Driver->close(true); //关闭当前队列连接
 
-//冗余文件整理, 整理文件时候会阻塞读写
-$Driver->maintain(); //整理当前队列数据文件
-$Driver->maintain(true); //整理所有队列数据文件
+//冗余文件维护, 用于清除废弃数据。维护时候会阻塞读写
+$Driver->maintain(); //清理当前队列废弃数据文件
+$Driver->maintain(true); //清理所有队列废弃数据文件
 
-//设置触发冗余文件整理的阈值
-QueueLocal::setThreshold(1024*1024*100); //触发阈值为100Mb
+//设置触发冗余文件维护的阈值
+QueueLocal::setThreshold(1024*1024*100); //触发阈值为数据文件大小超过100Mb
 ~~~
 
 ---
