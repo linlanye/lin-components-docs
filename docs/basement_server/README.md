@@ -1,17 +1,10 @@
-此部分为Lin的[basement](../docs_basement/README.md) 服务器操作部分组件
+简介
 ---
-
-### 说明
-
+本部分的组件文档是[basement](../docs_basement/README.md) 服务器部分组件。
 所有服务器访问都实现了多节点、集群的透明化访问，仅仅通过配置文件里增加服务器的地址信息和相关模式即可实现多服务器访问。
+包含组件如下：
 
-#### 包含如下：
 ---
-
-* [KVLocal](kv/KVLocal.md) （Key-Value型模拟服务器操作类）
-```
-lin\basement\server\kv\KVLocal;
-```
 
 * [KV](kv/KV.md) （Key-Value型服务器操作类）
 ```
@@ -19,20 +12,24 @@ lin\basement\server\kv\KVMemecache;  //windows下操作memcached
 lin\basement\server\kv\KVMemecached; //linux下操作memcached
 lin\basement\server\kv\KVRedis;      //操作redis
 ```
+* [KVLocal](kv/KVLocal.md) （Key-Value型模拟服务器操作类）
+```
+lin\basement\server\kv\KVLocal;
+```
 
 * [Local](local/Local.md)  （本地文件操作类）
 ```
 lin\basement\server\local\Local;
 ```
 
-* [QueueLocal](queue/QueueLocal.md)   （模拟队列型服务器操作类）
-```
-lin\basement\server\queue\QueueLocal;
-```
-
 * [Queue](queue/Queue.md)   （队列型服务器操作类）
 ```
 lin\basement\server\queue\QueueRedis;
+```
+
+* [QueueLocal](queue/QueueLocal.md)   （模拟队列型服务器操作类）
+```
+lin\basement\server\queue\QueueLocal;
 ```
 
 * [SQL](sql/SQLPDO.md) （关系数据库操作类）
@@ -44,12 +41,12 @@ lin\basement\server\sql\SQLPDO;
 
 所有服务器组件皆为`动态配置`，使用两个配置文件。
 
-* servers配置文件，参考如下：
+* 专用的`servers`配置文件，参考如下：
 
 ~~~php
 <?php
 
-//配置形如
+//配置形如：
 [
     '服务器名1'=>[
         '服务器索引1'=>['服务器配置'],
@@ -87,10 +84,10 @@ lin\basement\server\sql\SQLPDO;
 ],
 ~~~
 
-* lin配置文件，参加不同组件的说明
+* 组件固有配置，参加不同组件的配置说明。
 
 ### 注意
-* 服务器的配置不建议动态改变。
+* 服务器专用的配置`servers`不建议动态改变。
 * 服务器组件皆不提供多服务器的数据同步，请从服务器层面确保数据同步。
 * 权重小于0的服务器将不会被使用。
 
