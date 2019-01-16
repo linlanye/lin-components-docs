@@ -161,7 +161,7 @@ return:
     string|null 文件内容，失败或错误返回null
 ```
 
-**upload()**: 上次本地文件到服务器
+**upload()**: 上传本地文件到服务器
 ```php
 params:
     string $localFile  欲上传的本地文件，对目录也可以处理
