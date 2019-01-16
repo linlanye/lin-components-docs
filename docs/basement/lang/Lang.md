@@ -49,9 +49,6 @@ namespace: `lin\basement\lang`
 //实例化并指定标识名
 new Lang('lin');
 
-//运行调试
-Lang::run();
-
 //清除指定i18n中的所有语言数据
 Lang::clean('en'); //清空en语言下的所有数据
 Lang::clean(); //清空所有语言数据

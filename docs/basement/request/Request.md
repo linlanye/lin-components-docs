@@ -12,14 +12,14 @@ namespace: `lin\basement\request`
 
 * basement部分，[点击查看](../../docs_basement/Request.md)
 * 扩展功能：
-    * $_GET、 $_POST和类方法绑定，通过任何一个修改，另一个都发生变化。
-    * 映射类属性为当前请求参数。
+    * $_GET、 $_POST和本类数据及操作绑定，通过任何一个修改，另一个都发生变化。
+    * 实例属性为当前请求方法携带的参数。
     * 模拟任何类型的请求。
     * 使用 `.` 对参数的多级读写。
-    * 获取有效的上传数据。
+    * 获取整合后的有效上传数据信息。
     * 获取上传错误信息。
     * 清空指定方法的数据。
-    * 重置并清空所有寒暑假。
+    * 重置并清空所有数据。
 
 
 #### 配置项
@@ -37,7 +37,7 @@ namespace: `lin\basement\request`
     'uploads' => [
         'path'   => 'path/to/uploads', //上传文件存放路径
         'rename' => function ($rawFile) {}, //可使用回调对上传文件重命名，入参为原文件名
-        'filter' => function ($fileType, $fileSize) {//入参为文件后缀名，文件大小（来自$_FILES）
+        'filter' => function ($fileType, $fileSize) {//入参为文件后缀名，文件大小（皆来自$_FILES）
             return true; //对上传文件进行过滤，返回false则滤掉
         },
     ],
@@ -49,12 +49,12 @@ namespace: `lin\basement\request`
 ~~~php
 <?php
 
-//实例属性 = 当前请求参数。假设当前请求方法为GET
-$Requert = new Requert;
-$Requert->id; //等价于$_GET['id']
-$Requert->id = 'value'; //等价于$_GET['id'] = 'value'
+//实例属性 := 当前请求参数。假设当前请求方法为GET
+$Request = new Request;
+$Request->id; //等价于$_GET['id']
+$Request->id = 'value'; //等价于$_GET['id'] = 'value'
 
-//模拟任意请求。配置项如上，假设表单post的数据为['__method'=>'PUT', 'id'=>'value' ],
+//模拟任意请求。假设表单post的数据为['__method'=>'PUT', 'id'=>'value' ],
 Request::getMethod(); //值为PUT
 Request::getRawMethod(); //值为POST
 Request::getCurrent(); //值为['id'=>'value']
@@ -71,8 +71,7 @@ $Request->params(['post.id' => 'value']); //等价于$_POST['id'] = 'value'
 $uploads = Request::getUploads();
 $uploads = [
     'file1' => [
-        ['name' => '重命名后的名字', 'type' => '文件类型', 'size' => '文件大小',
-        'file' => '包含完整路径',],
+        ['name' => '文件名（重命名后）', 'type' => '文件类型', 'size' => '文件大小','file' => '包含完整路径的文件名（重命名后）'],
         ...
     ],
     ...
@@ -83,13 +82,14 @@ $uploads = [
 $errors = Request::getUploadsError();
 $errors = [
     'file1' => [
-        ['错误码, 见下述']
+        'index' => '错误码，见下述API',
+        ...
     ],
     ...
 ];//errors形式
 
 //清除目标方法数据
-Request::clean('get');//清空GET方法的参数
+Request::clean('GET');//清空GET方法的参数
 Request::clean();//清空所有方法参数
 
 //重置
@@ -145,7 +145,7 @@ const UPLOAD_CANT_MOVE         = 11; //无法移动文件
 ```
 
 
-**__get()**: 通过实例属性获取当前请求方法的参数
+**__get()**: 通过实例属性获取当前请求方法携带的参数
 ```php
 params:
     string $param 参数名
@@ -153,7 +153,7 @@ return
     mixed|null 失败返回null
 ```
 
-**__set()**: 通过实例属设置当前请求方法的参数
+**__set()**: 通过实例属性设置当前请求方法的参数
 ```php
 params:
     string $param 参数名
@@ -162,7 +162,7 @@ return
     bool 是否成功
 ```
 
-**__isset()**: 通过isset()方法查看实例属性对应的参数是否存在
+**__isset()**: 通过isset()方法查看当前请求方法的某个参数是否存在
 ```php
 params:
     string $param 参数名
@@ -183,7 +183,7 @@ return
 params:
     void
 return
-    array|null 失败返回null，成功格式形如['file1' => [['name' => '重命名后的名字', 'type' => '文件类型', 'size' => '文件大小','file' => '包含完整路径']]]
+    array|null 失败返回null，成功格式形如['file1' => [['name' => '文件名', 'type' => '文件类型', 'size' => '文件大小','file' => '完整文件名']]]
 ];
 ```
 
@@ -192,7 +192,7 @@ return
 params:
     void
 return
-    array|null 失败返回null，成功格式形如['file1' => [['错误码，见上述常量属性']]]
+    array|null 失败返回null，成功格式形如['file1' => ['index'=>'错误码', ...]]
 ];
 ```
 

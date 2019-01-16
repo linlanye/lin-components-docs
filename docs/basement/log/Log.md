@@ -12,7 +12,7 @@ namespace: `lin\basement\log`
 
 * basement部分，[点击查看](../../docs_basement/Log.md)
 * 扩展功能：
-    * 在生命期期结束后一次性写入。
+    * 在脚本生命期结束后一次性写入。
     * 可使用队列、关系型数据库、本地文件存储日志。
 
 
