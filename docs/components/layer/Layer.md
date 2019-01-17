@@ -165,7 +165,7 @@ return
 ```php
 params:
     array $layers    整个执行流程，数组元素为依次执行的层方法，每一个层方法的入参都为Flow对象，满足psr-4方式调用更深目录的类，格式形如 'class(类名).method(方法名)'
-    mixed $data=null 流携带的数据，默认无
+    mixed $data=null Flow实例携带的数据，也即$Flow->data值，默认无
 return
     Flow 流对象，参加Flow说明
 ```

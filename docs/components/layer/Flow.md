@@ -3,7 +3,7 @@ Flow类说明
 
 ### 功能
 
-流对象为流水化流程中，携带数据和指令的对象。通过`Layer::flow()`启动流水化，每一执行方法中的入参皆为流对象。
+本类为流水化流程中，携带数据和指令的对象。通过Layer类的`Layer::flow()`方法启动流水化流程，在流程执行中的每一个方法入参皆为本类实例，且。
 
 
 #### 使用
@@ -22,11 +22,11 @@ class Controller extends Layer
 
         //流程执行
         $Flow = self::flow([
-            'Controller.flow1', //执行顺序为flow1、flow2、flow3
+            'Controller.flow1', //执行顺序为flow1()、flow2()、flow3()
             'Controller.flow2'
             'Controller.flow3'
         ], $data);
-        $Flow->data; //值为2，flow2方法中调用了terminal()提前终止执行
+        $Flow->data; //值为2，flow2()方法中调用了terminal()提前终止执行，见下述
 
         //获得执行细节
         $Flow->getDetails(); //返回[['app/layer/Controller', 'flow1'], ['app/layer/Controller', 'flow2']] 命名空间前缀来自Layer的配置项
@@ -81,7 +81,7 @@ public function reset(): bool
 
 **属性**: 只包含一个数据属性
 ```
-public $data; 流携带的数据
+public $data; 实例携带的数据
 ```
 
 **terminal()**: 用于设置提前终止执行的标记，使得后续流程不再执行
@@ -95,7 +95,7 @@ params:
 params:
     void
 return
-    array 数组元素形如['类名', '方法名']
+    array 格式形如[['类名', '方法名'], ...]
 ```
 
 **isTerminal()**: 当前执行是否已为终点
@@ -106,7 +106,7 @@ return
     bool 是否已为终点
 ```
 
-**reset()**: 重置流对象当不清除其携带数据，使得可以重复执行流程
+**reset()**: 重置但不清除实例携带数据，使实例可以重复执行流程
 ```php
 params:
     void
