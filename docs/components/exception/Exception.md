@@ -32,7 +32,7 @@ namespace: `lin\exception\Exception`
             'name' => 'exception', //日志名
         ],
         'show'     => true, //是否显示异常
-        'callback' => function($Exception) {}, //异常发生时回调函数，空则不回调，入参为异常类$Exception
+        'callback' => '', //异常发生时回调函数，空则不回调，入参为异常类$Exception
     ],
 
     //错误处理
