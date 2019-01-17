@@ -1,7 +1,8 @@
-此部分为Lin的非[basement](https://github.com/linlanye/basement)组件
+简介
 ---
+本部分组件文档为非[basement](https://github.com/linlanye/basement)组件。
+包含组件如下：
 
-#### 包含如下：
 ---
 
 * [LSE](algorithms/LSE.md) （对称加密类）
@@ -14,7 +15,7 @@ lin\algorithms\LSE;
 lin\exception\Exception;
 ```
 
-* [Layer](layer/Layer.md) （架构类，见[LBA说明](https://github.com/linlanye/lin)）
+* [Layer](layer/Layer.md) （架构类，见[LBA说明](../framework/LBA.md)）
 ```
 lin\layer\Layer;
 ```
