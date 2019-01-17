@@ -9,7 +9,7 @@ namespace: `lin\url\URL`
 ---
 
 ### 说明
-在原始输入url和目标url建立一层映射，可自动管理url的生成。
+在原始输入url和目标url建立一层映射，可灵活管理url的生成，并在切换url风格和域名的情况下不用再度更改url地址。
 
 ---
 
@@ -30,6 +30,7 @@ namespace: `lin\url\URL`
 'url'       => [ //构建url
     'dynamic' => [ //使用回调生成完整path，入参为输入的当前有效域，输入的路径值，当前入口脚本名
         'path'  => function ($domin, $path, $script) {
+            //如$domin为www.lin-php.com，$path为相对路径，$script一般为index.php
             if ($path == '/') {
                 return "http://$domin";
             }
