@@ -55,7 +55,7 @@ namespace: `lin\view`
 
 * 编写`.php`文件，文件中主要编写`html`代码和模板语句。
 * 模板语句以配置项`tag.left`和`tag.right`这两个左右界定符包裹。
-* 以冒号开头的语句皆为输出，如`{:$var} 等价于 echo $var;`；`{:md5($)} 等价于 echo md5($var);`。
+* 以冒号开头的语句皆为输出，如`{:$var} 等价于 echo $var;`；`{:md5($var)} 等价于 echo md5($var);`。
 * 输出变量时可以省略 `$` 符号，如`{:var}`。
 * `switch`语句中的`case:`和`default:`可省略 `:`，如`{case 'lin'}等价于 {case 'lin':}`
 * 可省略`php`语句末尾的 `;`。
@@ -86,10 +86,10 @@ namespace: `lin\view`
         <p>lin框架</p>
     {/while}
 
-    <!--while语句 -->
-    {while ($var ==' lin')}
+    <!--do-while语句 -->
+    {do}
         <p>lin框架</p>
-    {/while}
+    {/while ($var ==' lin')}
 
     <!--foreach语句-->
     {foreach ($array as $k=>$v)}
@@ -131,10 +131,8 @@ namespace: `lin\view`
 
 假设child.php文件内容如下
 ~~~html
-<html>
-    <p>我是子页面</p>
-    {EXTENDS parent} <!--继承标识，可放在任意位置-->
-</html>
+<p>我是子页面</p>
+{EXTENDS parent} <!--继承标识，可放在任意位置-->
 ~~~
 
 则解析chilid.php文件最终生成样式如下
@@ -165,8 +163,10 @@ namespace: `lin\view`
 ~~~html
 <html>
     <p>lin框架</p>
-    <p>我是父页面</p>
-    <p>我是子页面</p>
+    <html>
+        <p>我是父页面</p>
+        <p>我是子页面</p>
+    </html>
 </html>
 ~~~
 
