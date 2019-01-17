@@ -1,4 +1,4 @@
-Algorithms类
+LSE类
 ----
 namespace: `lin\algorithms`
 
@@ -9,8 +9,8 @@ namespace: `lin\algorithms`
 ---
 
 ### 说明
-本组件为一些算法的集合，每一个算法可能会采取不同的license，具体看文件头部说明。
-目前有对称加密算法，该算法是基于单向散列的对称加密算法，使用简单，具有高安全性，高性能，数据量低等特点。在同一个密钥和同一加密内容情况下，生成的加密数据完全不一致。全称Lin Symmetric(Secure) Encryption，简称LSE。
+本组件为算法类中的对称加密类，算法类中每一个算法可能会采取不同的license，具体看文件头部说明。
+本类是基于单向散列的对称加密算法，算法本身公开透明。使用简单，具有高安全性，高性能，数据量低等特点。在同一个密钥和同一加密内容情况下，每次生成的加密数据都完全不一样，有效避免碰撞破解。算法全称Lin Symmetric(Secure) Encryption，简称LSE。
 
 ---
 
@@ -29,7 +29,7 @@ namespace: `lin\algorithms`
 //使用密钥加密解密
 $LSE = new LSE('secret_key'); //密钥为'secret_key'
 
-$LSE->encrypt('data'); //加密并输出16进制密文
+$LSE->encrypt('data'); //加密并输出十六进制密文
 $LSE->encrypt('data', true); //加密并输出二进制密文
 
 $LSE->decrypt('ciphertext'); //解密16进制密文
@@ -54,7 +54,7 @@ public function decrypt(string $data, bool $isRaw = false) :  ? string
 ```php
 params:
     string $secretKey 用于加解密的密钥
-    int    $times=5   加密次数，不建议修改，一次加解密该值需一致。
+    int    $times=5   内部循环加密次数，不建议修改，一次加解密该值需一致。
 return
     mixed|null 失败返回null
 ```
@@ -63,7 +63,7 @@ return
 ```php
 params:
     string $data        待加密数据
-    bool   $isRaw=false 是否输出原始二进制数据，否则输出16进制字符串
+    bool   $isRaw=false 是否输出原始二进制数据，否则输出十六进制字符串
 return
     string|null 失败返回null
 ```

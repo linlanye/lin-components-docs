@@ -46,7 +46,8 @@ nav:
             SQL（关系数据库操作类）: basement_server/sql/SQLPDO.md
         常规组件:
             总览: components/README.md
-            LSE（对称加密类）: components/algorithms/LSE.md
+            Algorithms（算法类）:
+                LSE（对称加密类）: components/algorithms/LSE.md
             Exception（自定义异常类）: components/exception/Exception.md
             Layer（架构类）:
                 Layer（LBA架构类）: components/layer/Layer.md
