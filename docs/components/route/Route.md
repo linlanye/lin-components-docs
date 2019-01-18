@@ -19,11 +19,11 @@ namespace: `lin\route`
 * 创建动态路由，使路由地址可解析为GET参数。
 * 创建快速执行的闭包路由。
 * 创建全局前置或后置执行。
-* 创建未匹配时的通用执行。
-* 执行指定的路由规则创建文件或自动加载所有路由规则创建文件
+* 创建路由未匹配时的通用执行。
+* 执行指定的路由规则文件或自动加载所有路由规则文件
 * 可临时关闭路由。
-* 路由可全缓存化，包括闭包路由（依赖于php具体版本，闭包代码占用需超过两行）。
-* 路由执行可通过终止符随时终止。
+* 路由全部可全缓存化，包括闭包路由（依赖于php具体版本，闭包代码占用需超过两行）。
+* 路由执行过程可通过终止符随时终止。
 
 
 
@@ -60,7 +60,7 @@ namespace: `lin\route`
 #### 使用
 
 ##### 创建规则
-* 若未创建规则或未匹配到规则，路由会执行通用规则——来自配置项 `general` 的回调函数，若该项不为回调函数，则不执行。
+* 若未创建规则或未匹配到规则，则会执行通用规则——来自配置项 `general` 的回调函数，若该项不为回调函数，则不执行。
 * 规则为数组，形如`['匹配地址' => 执行规则 ]`，有以下三种格式：
     * '相对url' => '类名.方法名'
     * '相对url' => '闭包'
@@ -99,7 +99,7 @@ $Creator->withPre(function(){});
 ~~~
 
 ##### 执行路由
-* 执行时可通过`run()`方法加载配置项`path`下的所有规则定义文件，也可指定加载某些文件。使用 `*` 加载所有，使用 `,` 加载多个，`/` 结尾加载目录
+* 执行时可通过`run()`方法加载配置项`path`下的所有规则文件，也可指定加载某些文件。使用 `*` 加载所有，使用 `,` 加载多个，其余匹配模式参见`glob()`的`$pattern`参数说明。
 * 匹配规则的优先级为：**静态** > **动态** > **通用**
 * 执行时遭遇终止符则不再执行。假设执行流程为`Middleware::before(), Index::index(), Middleware::after()`，若此时`Middleware::before()`返回的是配置项`terminal`的元素（即终止符），则后续不再执行。
 
@@ -112,7 +112,7 @@ Route::run('*');
 
 //加载执行指定的规则文件
 Route::run('my_route1, my_route2'); //加载两个规则文件
-Route::run('admin/'); //加载admin目录下的所有规则文件
+Route::run('admin/*'); //加载admin目录下的所有规则文件
 
 //不加载任何规则文件
 Route::run(null);
@@ -150,7 +150,7 @@ public function create(array $rules, string $methods = 'GET, POST'): bool
 
 #### 详细说明
 
-**::run()**: 加载路由规则，并执行路由
+**::run()**: 加载路由规则文件，并执行路由
 ```php
 params:
     string|null $files='*' 加载配置项path下的文件或目录，文件匹配规则参见glob()函数$pattern参数说明，加载多个使用 “,” 分割，null则不加载。
@@ -166,7 +166,7 @@ return
     mixed|bool  回调的返回，或未执行回调时候返回true
 ```
 
-**::getCreator()**: 获得路由构建器实例
+**::getCreator()**: 获得路由规则构建器实例
 ```php
 params:
     void
@@ -196,7 +196,7 @@ return
 **withPre()**: 使当前`create()`定义的规则包含全局前置执行，一次性使用。
 ```php
 params:
-    string|Closure|array $pre 执行规则，string格式为'Class.method'。若为数组，则按数组元素执行，元素格式为string或Closure
+    string|Closure|array $pre 执行规则，string格式为'Class.method'。若为数组，则按数组元素依次执行，元素格式为string或Closure
 return
     bool
 ```
