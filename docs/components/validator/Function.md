@@ -39,7 +39,7 @@ public function isMobile($v): bool //手机
 public function isZIP($v): bool //邮编
 public function isTel($v): bool //座机
 public function isDate($v): bool //日期
-public function isActive($v): bool //常见勾选用字符
+public function isActive($v): bool //常见是否型勾选用字符，见Formatter的Function说明
 public function isID($v): bool //18位身份证
 public function isBC($v): bool //16-19位银行卡号
 public function isAccount($v): bool //账号常见字符，中英文、数字、横线、下划线、点、@字符
