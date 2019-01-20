@@ -110,12 +110,10 @@ $Formatter->withRule('my_rule1, my_rule2')->format($raw);
 $Formatter->toInt($raw['id']); //内置格式化函数见下方
 ~~~
 
-
 ---
 
-
 ## API
-#
+
 * 格式化函数[点击查看](Function.md)。
 * 其它如下：
 

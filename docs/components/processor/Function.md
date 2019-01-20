@@ -20,16 +20,16 @@ public function toActive($v, ? int $default = 0) :  ? int //转为1或默认值
 public function toPNum($v, ? int $default = null) :  ? int //转为正整数
 public function toNatNum($v, ? int $default = null) :  ? int //转为自然数
 public function toNNum($v, ? int $default = null) :  ? int //转为负整数
-public function toPrice($v, ? string $default = null) :  ? string //转为两位小数字符串
+public function toPrice($v, ? string $default = null) :  ? float //转为两位小数
 public function toTString($v, ? string $default = null) :  ? string //转换为千分位分割的数字
 public function toPast($t, ? string $default = null) :  ? string //转为过去时间
 public function toFuture($t, ? string $default = null) :  ? string //时间戳转为未来时间
 public function toCountdown($v, ? string $default = null) :  ? string //转为倒计时
 
 /***指定类型转另一类指定类型***/
-public function num2IP($v, ? string $default = null) :  ? string //整数转IP
-public function ip2Num(string $v, ? int $default = null) :  ? int //IP转整数
-public function date2time($v, ? int $default = null) :  ? int //日期转时间戳
+public function num2ip($v, ? string $default = null) :  ? string //整数转IP
+public function ip2num(string $v, ? int $default = null) :  ? int //IP转整数
+public function date2timestamp($v, ? int $default = null) :  ? int //日期转时间戳
 
 /*********字符专用转换*********/
 public function forPwd(string $v, int $cost = 10) : string //明文字符串转安全密码
@@ -43,11 +43,11 @@ public function stripSpace(string $v): string //剔除字符串中的所有空�
 
 ### 详细说明
 
-所有带$default入参的函数，皆在待格式化的数据无效时用作默认返回。
+所有带`$default`入参的函数，皆在待格式化的数据无效时用作默认返回。
 
 #### 任意类型转基础类型
 
-**toInt()**: 转为整形，当数据为`object`时，先获得其属性值再转整形。
+**toInt()**: 转为整形，当数据为`object`时，先获得其公共属性值再转。
 ```php
 params:
     mixed $v 数据
@@ -99,21 +99,13 @@ return
 **toDate()**: 转为标准日期
 ```php
 params:
-    mixed $v 数据
-return
-    object
-```
-
-**toDate()**: 转为标准日期
-```php
-params:
     mixed  $v            数据
     string $default=null 转换无效时候返回的默认值
 return
     string|null 转换后的格式为 'Y-m-d H:i:s'
 ```
 
-**toActive()**: 转为0或1，为数字时大于0转为1，其余转为0；当为字符'yes', 'on', 'accept', 'accepted', 'agree'时转为1，其余情况返回`$default`值
+**toActive()**: 转为0或1。为数字时大于0转为1，否则转为0；当为字符'yes', 'on', 'accept', 'accepted', 'agree'时转为1；其余情况和其它类型返回`$default`值
 ```php
 params:
     mixed $v         数据
@@ -122,7 +114,7 @@ return
     string|null
 ```
 
-**toPNum()**: 转为正整数，大于0转为整数，否则转为1，非数字时返回`$default`值
+**toPNum()**: 转为正整数（四舍五入），大于0转为整数，否则转为1，非数字时返回`$default`值
 ```php
 params:
     mixed $v            数据
@@ -131,7 +123,7 @@ return
     int|null
 ```
 
-**toNatNum()**: 转为自然数，大等于0转为整数，否则转为0，非数字时返回`$default`值
+**toNatNum()**: 转为自然数（四舍五入），大等于0转为整数，否则转为0，非数字时返回`$default`值
 ```php
 params:
     mixed $v            数据
@@ -140,7 +132,7 @@ return
     int|null
 ```
 
-**toNNum()**: 转为负整数，小于0转为整数，否则转为-1，非数字时返回`$default`值
+**toNNum()**: 转为负整数（四舍五入），小于0转为负整数，否则转为-1，非数字时返回`$default`值
 ```php
 params:
     mixed $v            数据
@@ -149,13 +141,13 @@ return
     int|null
 ```
 
-**toPrice()**: 转为两位小数字符串，非数字时返回`$default`值
+**toPrice()**: 转为两位小数（四舍五入），非数字时返回`$default`值
 ```php
 params:
     mixed  $v            数据
     string $default=null 转换无效时候返回的默认值
 return
-    string|null
+    float|null
 ```
 
 **toTString()**: 转换为千分位分割的数字，非数字时返回`$default`值
@@ -167,7 +159,7 @@ return
     string|null
 ```
 
-**toPast()**: 转为过去时间，非数字时返回`$default`值
+**toPast()**: 转为过去时间，大于当前时间戳则使用`toFuture()`，非数字时返回`$default`值
 ```php
 params:
     mixed  $v            数据
@@ -176,7 +168,7 @@ return
     string|null 格式形如：x年前、x个月前、x天前、x小时前、x分钟前、x秒前、现在
 ```
 
-**toFuture()**: 时间戳转为未来时间，非数字时返回`$default`值
+**toFuture()**: 转为未来时间，小于当前时间戳则使用`toPast()`，非数字时返回`$default`值
 ```php
 params:
     mixed  $v            数据
@@ -185,18 +177,18 @@ return
     string|null 格式形如：x年后、x个月后、x天后、x小时后、x分钟后、x秒后、现在
 ```
 
-**toFuture()**: 转为倒计时，非数字时返回`$default`值
+**toCountdown()**: 转为倒计时，非数字时返回`$default`值
 ```php
 params:
     mixed  $v            数据
     string $default=null 转换无效时候返回的默认值
 return
-    string|null 格式形如：x天x时x分x秒
+    string|null 格式形如：x天x时x分x秒，小于当前时间则返回 ‘0秒’
 ```
 
 #### 任意类型转指定类型
 
-**num2IP()**: 整数转IP，非数字或超过`+-0x7fffffff`时返回`$default`值
+**num2ip()**: 整数转IP，非数字或超过`+-0x7fffffff`时返回`$default`值
 ```php
 params:
     mixed  $v            数据
@@ -205,7 +197,7 @@ return
     string|null
 ```
 
-**ip2Num()**: IP转整数，非有效ip或转换失败时返回`$default`值
+**ip2num()**: IP转整数，非有效ip或转换失败时返回`$default`值
 ```php
 params:
     mixed $v            数据
@@ -214,7 +206,7 @@ return
     int|null
 ```
 
-**date2Timestamp()**: 日期转时间戳，非日期字符或数字时返回`$default`值
+**date2timestamp()**: 日期转时间戳，非日期字符或数字时返回`$default`值
 ```php
 params:
     mixed $v            数据

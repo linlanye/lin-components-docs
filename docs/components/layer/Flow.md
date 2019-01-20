@@ -71,7 +71,7 @@ class Controller extends Layer
 #### 列表
 ~~~php
 public $data;
-public function terminal()
+public function terminal(): void
 public function getDetails(): array
 public function isTerminal(): bool
 public function reset(): bool
