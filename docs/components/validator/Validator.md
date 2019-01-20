@@ -10,7 +10,7 @@ namespace: `lin\validator`
 
 ### 说明
 
-通过继承本类定义规则，然后调用规则进行数据批量校验。提供`must`、`should`、`may`三种校验模式，分别代表：无论字段存在与否都要校验、字段存在便校验、字段存在且非空才校验。
+通过继承本类定义规则，然后调用规则进行数据批量校验。提供`must`、`should`、`may`三种校验模式，分别代表：无论字段存在与否都要校验、字段存在便校验、字段存在且非空才校验（trim后长度大于0）。
 除继承外，也可直接调用内置校验方法对数据进行单个校验。
 
 ---
@@ -140,11 +140,11 @@ final public function getErrors(): array
 
 #### 详细说明
 
-**setRule()**: 定义规则，只可在`setting()`中使用。
+**setRule()**: 定义规则，只可在`setting()`中使用。规则格式见上述。
 ```php
 params:
     string $name  规则名
-    array  $rules 规则数组，具体见上述说明。
+    array  $rules 规则数组，键名为原数据中的字段名和校验模式，键值为目标校验函数和校验失败信息。多个校验字段用 ',' 隔开，深层字段使用 '.' 访问。
 return
     bool
 ```
@@ -157,13 +157,13 @@ return
     $this
 ```
 
-**validate()**: 校验数据
+**validate()**: 校验数据，未指定规则返回`false`。
 ```php
 params:
     array $data           待校验的数据
     bool  $weakMode=false 是否为弱模式，弱模式下任一字段通过则全部通过，否则必须所有字段通过才通过
 return
-    bool 是否校验成功
+    bool 是否校验成功，未指定规则返回false
 ```
 
 **getErrors()**: 获取校验失败的字段错误信息，来源于`setRule()`时指定，未指定则来自配置项`default.info`的执行结果。下一次校验时，将被重新生成。

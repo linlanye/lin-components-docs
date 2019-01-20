@@ -10,7 +10,7 @@ namespace: `lin\processor`
 
 ### 说明
 将数组中的任意字段映射为指定字段，值保持不变。支持使用 `'.'` 访问多维数组元素。
-提供`must`、`should`、`may`三种映射模式，分别代表：无论字段存在与否都要映射、字段存在便映射、字段存在且非空才映射。
+提供`must`、`should`、`may`三种映射模式，分别代表：无论字段存在与否都要映射、字段存在便映射、字段存在且非空才映射（trim后长度大于0）。
 使用时需继承本类，并定义映射规则。
 ---
 
@@ -45,13 +45,13 @@ namespace: `lin\processor`
 ['原字段: 模式' => '目标字段']
 
 一般形式
-['key1.key2: mode' => 'a1.a2, b1.b2.bn']
+['key1.key2: mode' => 'a1.a2, b1.b2.bn'] //将任意字段映射为任意多个目标字段
 ```
-代表可将任意字段映射为任意多个目标字段。
+
+##### 定义规则
 ~~~php
 <?php
 
-//1.定义规则
 class MyMapper extends Mapper
 {
     //在setting方法中定义不同的规则，以下用$raw表示原始数据
@@ -77,8 +77,11 @@ class MyMapper extends Mapper
         ...
     }
 }
+~~~
 
-//2.使用规则
+##### 使用规则
+~~~php
+<?php
 $Mapper = new MyMapper;
 
 //保留所有的数据，包括未映射的数据
@@ -106,20 +109,13 @@ final public function map(array $raw, bool $onlyMapped = false): array
 
 #### 详细说明
 
-**setRule()**: 只用在`setting()`中定义规则
+**setRule()**: 定义规则，只可在`setting()`中使用。规则格式见上述。
 ```php
 params:
     string $name  规则名
     array  $rules 规则数组，键名为原数据中的字段名和映射模式，键值为目标映射字段，多个目标映射字段用 ',' 隔开，深层字段使用 '.' 访问。
 return
     bool
-
-$rules形如：
-[
-    'origin_field: mode' => 'target_field, target_field2',
-    'origin_field.field2: mode' => 'target_field.field2', //深层字段
-    ...
-]
 ```
 
 **withRule()**: 指定当前映射使用的规则，一次性使用。映射完后，下一次映射需重新指定。
@@ -130,7 +126,7 @@ return
     $this
 ```
 
-**map()**: 映射数据。
+**map()**: 映射数据，未指定规则时则返回原数据。
 ```php
 params:
     array $raw              待映射的数据
