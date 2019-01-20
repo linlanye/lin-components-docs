@@ -16,17 +16,17 @@ namespace: `lin\orm\model`
 ### 功能
 
 * 构建任意用于增删改查的SQL语句并执行。（[点击查看](SQLCreator.md)）
-* 模型的数据对象化和数组化操作互通。如`$Model['id']等价于$Model->id`、`$Model[0]['id']等价于$Model->{0}->id`。
+* 模型数据的对象化和数组化操作互通。如`$Model['id']等价于$Model->id`、`$Model[0]['id']等价于$Model->{0}->id`。
 * 自定义格式化器，用于入库和出库时的数据处理。
 * 自定义宏，用于简化操作和映射操作。如将多个连贯操作映射为单个方法调用或将删除映射为软删除等。
 * 简化关联模型操作。
-* 通过宏，关联操作可实三种写入方式混搭，如更新+插入。
+* 通过宏，关联操作的组合可实现写入方式的混搭，如更新+插入。
 * 提供`setting()`方法。
 
 #### 注意
 * 需要继承后使用。
-* 读操作统一使用静态开头进行访问，如`Model::where('id', 1)->select()`。
-* 读操作会自动补上主键字段。
+* 读操作统一使用静态方法开头进行访问，如`Model::where('id', 1)->select()`。
+* 读操作会自动补上模型的主键字段后进行查询。
 * 写操作统一使用实例进行访问，如`$Model->update()`。
 * 更新无脏数据概念，只要调用便执行数据库更新；删除会剔除主键数据；插入会补上主键数据。
 * 定义宏用于覆写已有方法时，读、写方法不可相互混淆。
@@ -57,12 +57,11 @@ namespace: `lin\orm\model`
 
 #### 使用
 
-* 设置参数
-
+##### 设置参数
+需继承后通过编写类及其方法使用。
 ~~~php
 <?php
 
-//需继承后通过编写类及其方法使用
 class MyModel extends Model
 {
     //基本参数
@@ -92,7 +91,7 @@ class MyModel extends Model
     }
 ~~~
 
-* 模型读取
+##### 模型读取
 ~~~php
 <?php
 
@@ -100,7 +99,7 @@ class MyModel extends Model
 MyModel::find(1); //等价于MyModel::where('user_id', 1)->one();
 MyModel::find(1, 1); //等价于MyModel::where(['user_id'=>1, 'order_id'=>1])->one();
 
-//注意：one方法返回一个记录(关联数组)，select方法返回多个记录（索引数组）
+//注意：one方法返回一个单记录(关联数组)，select方法返回多记录（索引数组）
 $Model = MyModel::one('user_id');
 $Models = MyModel::limit(1)->select('user_id'); //形如[['字段'=>'值']]
 
@@ -118,33 +117,53 @@ MyModel::withFormatter('read')->select('content');
 //取消多个宏或使用多个格式化器使用 ',' 隔开
 $Model->withoutMacro('macro1, macro2')->withFormatter('formatter1, formatter2');
 
-//判断是否为多记录
+//判断当前模型数据是否为多记录
 $Model->isMulti();
 ~~~
 
-* 模型写入
+##### 模型写入
+
+* 模型写入失败时，会自动恢复写入前的数据。
+* 所有写操作都只返回影响记录数。
+* 写操作包括`update()`、`insert()`、`delete()`。
+* `insert()`后，若模型首个主键值（多主键情况下也只管第一个主键）不存在，则尝试获取自增id对其进行赋值。
 
 ~~~php
 <?php
 
-//多个记录写入时，默认任一记录写入成功则成功，若需任一记录失败都失败，则使用严格模式
+//多个记录写入时，默认任一记录写入成功则成功，若需所有记录成功才成功，则使用严格模式。
 $Models->setStrictTrans()->update();
-
-//模型写入失败时，会自动恢复写入前的数据
-
-//所有写操作都只返回影响记录数
 
 //缺少主键数据时，更新和删除会抛出异常
 $Model = new MyModel;
 $Model->update(); //此时抛出异常
+$Model->delete(); //此时抛出异常
 ~~~
 
-* 关联模型
-    * 只考虑主从关系，简化为主模型的关联主字段**（master key）**和从模型的关联从字段**（slave key）**，并且任何时候都只关心主模型。
-    * 单向定义，如`用户`-`订单`关系，只需定义`用户`到`订单`的关系即可，无需定义`订单`到`用户`的关系。
-    * 关联操作分为`select`、`insert`、`update`、`delete`四种类型，可以定义各自的映射操作，并且互不影响。
-    * 对复杂关联，只需对相应的操作进行映射。如一对一查询，则定义`select`即可。
-    * 定义关联模型只需调用`setReltion()`编写相应参数即可。
+##### 关联模型
+
+* 只考虑主从关系，简化为主模型的关联主字段**（master key）**和从模型的关联从字段**（slave key）**之间的关系，并且任何时候都只关心主模型。
+* 单向定义，如`用户`-`订单`关系，只需定义`用户`到`订单`的关系即可，无需定义`订单`到`用户`的关系。
+* 关联操作分为`select`、`insert`、`update`、`delete`四种类型，可以定义每个类型的映射操作，并且类型之间互不影响。
+* 四个关联操作类型和宏没有直接关系，如宏里面将`delete()`映射为`update()`，但对关联操作而言，操作类型依然是`delete`。
+* 四个关联操作类型皆只对从模型执行。
+* 对复杂关联，只需对相应的操作进行映射。如需一对一关系查询，则定义`select`类型的映射即可。
+* 定义关联模型只需调用`setReltion(string $relationName, array $rules)`编写相应参数即可。第一个入参为关联关系名，也是主模型中的字段属性；第二个参数为规则，格式如下：
+```php
+$rules = [
+    'class' => string；从模型的类名，默认使用$relationName作为类名。（针对从模型）
+    'mk'     => string；主模型用于关联的键名，多个情况下使用 "," 隔开；默认使用主模型主键。（针对主模型）
+    'sk'     => string；从模型用于关联的键名，多个情况下使用 "," 隔开；默认使用从模型主键。（针对从模型）
+    'merge' => bool；关联查询时，是否合并从模型数据到主模型，默认false。（针对主模型）
+
+    //自定义对从模型的四种关联操作，该定义的操作不与宏冲突，并且只作用于对从模型的操作，默认无。
+    'select' => Closure|mixed。对从模型的所有读操作进行映射（包括one、select、find），入参为RMap对象和主模型的mk值。闭包的返回为从模型的值。使用该参数，可轻松实现n对n关联，远程关联，多级嵌套关联等复杂的关联模型。当值不为闭包时，则返回该值作为从模型的值。
+    'insert' => 同上。
+    'update' => 同上。
+    'delete' => 同上。
+];
+```
+
 ~~~php
 <?php
 
@@ -165,7 +184,7 @@ class Users extends Model
             ...
 
             //注意：从模型的每一条记录查询都会执行下面的定义，所以需指定where条件
-            //闭包入参为RMap对象和主模型的一条记录的关联主字段值
+            //闭包入参为RMap对象和主模型单条记录的关联主字段值
             'select' =>function($Map, $mks){
                 return $Map->where('sk', $mks['order_id'])->one();
             }
@@ -175,11 +194,11 @@ class Users extends Model
         $this->setRelation('order', [
             ...
             'select' =>function($Map, $mks){
-                return $Map->join('user_order', 'user_order.user_id=user.id')->where('sk', $mks['order_id'])->one();
+                return $Map->join('user_order', 'user_order.user_id=user.id')->where('sk', $mks['order_id'])->select();
             }
         ]);
 
-        //对insert、update、delete类似
+        //insert、update、delete和上述select类似
         $this->setRelation('order', [
             ...
             'insert' => function($Map, $mks){
@@ -239,7 +258,7 @@ params:
     int $flag = ArrayObject::STD_PROP_LIST | ArrayObject::ARRAY_AS_PROPS 参见ArrayObject说明
 ```
 
-**__callStatic()**: 动态调用读操作方法，由专用的Map对象提供，所有读操作皆必须使用静态方法开头
+**__callStatic()**: 动态调用读操作方法，由专用的`RMap`对象提供，所有读操作必须使用静态方法开头
 ```php
 params:
     string $method 调用的Map方法
@@ -248,7 +267,7 @@ return
     object 一个RMap（读取专用）对象实例，该对象用于将读操作映射为sql语句并执行
 ```
 
-**__call()**: 动态调用写操作方法，由专用的Map对象提供，所有写操作只能由Model对象实例调用
+**__call()**: 动态调用写操作方法，由专用的`WMap`对象提供，所有写操作只能由`Model`实例调用
 ```php
 params:
     string $method 调用的Map方法
@@ -265,7 +284,7 @@ return
     array 包含模型数据的数组
 ```
 
-**getParent()**: 获得当前模型的父（主）模型，用于关联操作的主从关系，从模型调用该方法则获得主模型。
+**getParent()**: 获得当前模型的父（主）模型
 ```php
 params:
     void
@@ -281,7 +300,7 @@ return
     bool 由one和find方法查询的结果为单记录，select方法查询的为多记录。传入数据并实例化时，若数据为非空索引数组则判断为多记录，否则为单记录。
 ```
 
-**setTable()**: 设置当前模型表名，若无则调用配置项中的默认执行
+**setTable()**: 设置当前模型表名，若无则调用配置项`model.default.table`的执行返回。
 ```php
 params:
     string $table
@@ -289,7 +308,7 @@ return
     $this
 ```
 
-**setPK()**: 设置当前模型主键名，多个主键用 ',' 隔开
+**setPK()**: 设置当前模型主键名，多个主键用 ',' 隔开，若无则调用配置项`model.default.pk`的执行返回。
 ```php
 params:
     string $pks
@@ -315,32 +334,20 @@ return
     $this
 ```
 
-**setRelation()**: 设置当前模型的关联模型，关联模型只定义单向的主从关系，如`用户-订单`关联，只需在`Users`模型定义关联`Orders`即可。至于是一对多或者远程关联等，皆通过对应的读写方法映射实现。
+**setRelation()**: 设置当前模型的关联模型，关联模型只定义单向的主从关系，具体说明见上述。
 ```php
 params:
-    string $relation 关联模型名，用于映射为模型的属性。
-    array  $params   设置关联模型的参数，详细如下
+    string $relation 关联关系名，也是主模型的字段属性，并在withReltion()方法中指定使用。
+    array  $params   设置关联模型的参数，具体见上述内容。
 return
     $this
-
-$params = [
-    'class' => string。目标关联模型的类名，则默认使用$relation作为类名。（从模型）
-    'mk'     => string。当前模型用于关联的键名，多个情况下使用 ","隔开；默认使用当前模型主键。（主模型）
-    'sk'     => string。目标模型用于关联的键名，多个情况下使用 ","隔开；默认使用目标模型主键。（从模型）
-    'merge' => bool。关联查询时，是否合并从模型数据到主模型，默认false。（主模型）
-
-    //自定义对从模型的读写操作，该定义的操作不与宏冲突，并且只作用于对从模型的操作，默认无。
-    'select' => Closure|mixed。对从模型的所有读操作进行映射（包括one、select、find），入参为RMap对象和主模型的mk值。闭包的返回为从模型的值。使用该参数，可轻松实现n对n关联，远程关联，多级嵌套关联等复杂的关联模型。当值不为闭包时，则返回该值作为从模型的值。
-    'insert' => 同上。
-    'update' => 同上。
-    'delete' => 同上。
-];
 ```
 
 ---
 
 
 #### Map对象方法
+
 用于为模型提供读写操作。
 注意：`with`开头的方法，都只能一次性使用，下一次使用需继续显示调用。
 
@@ -353,7 +360,7 @@ public function setDriver(object $Driver): object
 //获得指定驱动
 public function getDriver(): object
 
-//本次操作使用关联模型，多个情况下使用 ',' 隔开
+//本次操作使用的关联关系名，多个情况下使用 ',' 隔开
 public function withRelation(string $relations): object
 
 //本次操作使用格式化器，多个情况下使用 ',' 隔开
@@ -368,5 +375,8 @@ public function find($pk, ...$pks): object
 //写专用，设置多记录写入时为严格模式，此时任一记录操作失败皆失败。默认为宽松模式，任一记录操作成功皆成功。
 public function setStrictTrans(): object
 
-//SQL语句构建部分参考SQLCreator说明
 ~~~
+
+#### SQL语句构建
+
+参考[SQLCreator说明](SQLCreator.md)
