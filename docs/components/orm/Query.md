@@ -44,8 +44,9 @@ $Query->one(); //单记录查询
 $Query->count(); //聚合查询，包括sum、max、min、avg等
 $Query->where('id', 1)->update(); //更新
 $Query->where('id', 1)->delete(); //删除
-$Query->insert(); //删除
+$Query->insert(); //插入
 $Query->replace(); //替代，有些数据库可能不支持！
+
 ... //更多方法见SQLCreator说明
 
 //获得最近自增ID
@@ -69,11 +70,10 @@ $Query->getDriver($Driver); //获得当前实例的驱动
 ---
 
 
-## API
+### API
 
 #### 列表
 ~~~php
-//SQL语句构建方法，参考SQLCreator说明
 
 //内置方法
 public function yield(): object
@@ -124,3 +124,7 @@ params:
 return
     object 当前使用的驱动，为一个满足Basement的ServerSQL标准的对象
 ```
+
+#### SQL语句构建
+
+参考[SQLCreator说明](SQLCreator.md)
