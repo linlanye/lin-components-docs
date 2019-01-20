@@ -20,7 +20,7 @@ public function toActive($v, ? int $default = 0) :  ? int //转为1或默认值
 public function toPNum($v, ? int $default = null) :  ? int //转为正整数
 public function toNatNum($v, ? int $default = null) :  ? int //转为自然数
 public function toNNum($v, ? int $default = null) :  ? int //转为负整数
-public function toPrice($v, ? string $default = null) :  ? float //转为两位小数
+public function toPrice($v, ? string $default = null) :  ? string //转为两位小数字符串
 public function toTString($v, ? string $default = null) :  ? string //转换为千分位分割的数字
 public function toPast($t, ? string $default = null) :  ? string //转为过去时间
 public function toFuture($t, ? string $default = null) :  ? string //时间戳转为未来时间
@@ -141,13 +141,13 @@ return
     int|null
 ```
 
-**toPrice()**: 转为两位小数（四舍五入），非数字时返回`$default`值
+**toPrice()**: 转为两位小数字符串（四舍五入），非数字时返回`$default`值
 ```php
 params:
     mixed  $v            数据
     string $default=null 转换无效时候返回的默认值
 return
-    float|null
+    string|null
 ```
 
 **toTString()**: 转换为千分位分割的数字，非数字时返回`$default`值
