@@ -112,7 +112,7 @@ $Formatter->toInt($raw['id']); //内置格式化函数见下方
 
 ---
 
-## API
+### API
 
 * 格式化函数[点击查看](Function.md)。
 * 其它如下：

@@ -98,7 +98,7 @@ $Mapper->withRule('my_rule1, my_rule2')->map($raw);
 ---
 
 
-## API
+### API
 
 #### 列表
 ~~~php

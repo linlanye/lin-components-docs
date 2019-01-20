@@ -39,7 +39,7 @@ $LSE->decrypt('ciphertext', true); //解密二进制密文
 ---
 
 
-## API
+### API
 
 #### 列表
 ~~~php

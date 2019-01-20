@@ -140,7 +140,7 @@ $Security->destroy('login'); //达到退出登录作用
 ---
 
 
-## API
+### API
 
 #### 列表
 ~~~php

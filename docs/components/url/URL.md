@@ -71,7 +71,7 @@ $params = URL::getParameters(); //['domin' => 'www.lin.com', 'script' => 'index.
 ---
 
 
-## API
+### API
 
 #### 列表
 ~~~php

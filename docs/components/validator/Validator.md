@@ -124,7 +124,7 @@ $Validator->toInt($data['id']); //内置校验函数
 ---
 
 
-## API
+### API
 
 #### 列表
 
