@@ -1,20 +1,49 @@
 # Lin1.0 说明文档
+[![Latest Stable Version](https://poser.pugx.org/lin/lin/v/stable)](https://packagist.org/packages/lin/lin)
+[![Total Downloads](https://poser.pugx.org/lin/lin/downloads)](https://packagist.org/packages/lin/lin)
+[![PHP Version](https://img.shields.io/badge/php-%3E%3D7.2-8892BF.svg)](http://www.php.net/)
+[![License](https://poser.pugx.org/lin/lin/license)](https://packagist.org/packages/lin/lin)
 ---
 
-## 简介
 
-本文档为php框架[Lin](https://github.com/linlanye/lin)所使用的组件[Lin-components](https://github.com/linlanye/lin-components)的说明文档。文档内容分为以下三个部分：
+## 介绍
 
-* [basement一般组件](basement/README.md)
-* [basement的服务器组件](basement_server/README.md)
-* [一般组件](components/README.md)
+**Lin是**一套基于[php7.2](http://www.php.net)的全新web框架，它具有一套全组件化的开发理念，避免了以往web框架可定制性差、扩展开发繁杂、布局耦合度较高等缺点，完美实现了三重分离：应用层、框架层、组件层。使用者只需通过堆积木形式将一个个功能进行组装即可，而无需花费大量精力去理解一个框架的核心理念。Lin解耦了绝大多数开发场景，让协同开发更为简单，并且应用结构从一开始就基于高度弹性化的架构模式，对后续扩展、维护、升级都可以0成本轻松实现。
 
-（basement项目参见：[https://github.com/linlanye/basement](https://github.com/linlanye/basement)）
+## 特性
+
+* 全组件化，框架运行流程完全由使用者自行控制，通过一个个组件堆积而成。
+* 自带模拟kv、queue服务器，无需安装memcache和redis等外部环境，并可轻松一键切换。
+* 原生透明化支持SQL、Key-Value、Queue等服务器主从、多节点访问。
+* 新的组织架构[LBA](framework/LBA.md)，解决传统MVC模式的短板，可快速对应用架构轻量化弹性升级。
+* 涵盖web开发的绝大多数场景，组件功能接口简单，学习接近0成本。
+* 生产环境和开发环境无缝替换，生产部署极致简单。
+* 应用层、框架层、组件层三重分离，解耦框架与应用直接的强耦合。
+* 基于组件通用化项目[basement](basement/README.md)，开发更加透明化、组件调用更加规范化。
+* 接口风格高度一致的极简主义设计，避免所谓“优雅的语法”带来的繁杂的命名风格。
+* 路由、安全、数据等相关功能高度封装，极大降低应用开发中出现安全漏洞的风险。
+
+
+## 安装
+
+* composer 方式
+```
+composer create-project lin/lin
+```
+
+* 下载压缩文件
+
+[https://downloads.lin-php.com/lin-1.0.0.zip](https://downloads.lin-php.com/lin-1.0.0.zip)
+
+
+## 快速使用
+
+访问`public/index.php`即可，无论`public`目录是否处于web根目录、http服务器是否配置rewrite皆不影响应用的开发和运行。
 
 
 ## 组件列表
 
-#### [Basement](basement/README.md)
+### [Basement](basement/README.md)
 
 * [Config](basement/config/Config.md) （配置类）
 * [Debug](basement/debug/Debug.md)      （调试类）
@@ -24,7 +53,7 @@
 * [Log](basement/log/Log.md) （日志类）
 * [Request](basement/request/Request.md) (请求类)
 
-#### [Basement Server](basement_server/README.md)
+### [Basement Server](basement_server/README.md)
 
 * KV（Key-Value型服务器操作类）
     * [KVServer](basement_server/kv/KV.md)（远程服务器）
@@ -35,7 +64,7 @@
 * [Local](basement_server/local/Local.md)（本地文件操作类）
 * [SQL](basement_server/sql/SQLPDO.md)（关系数据库操作类）
 
-#### [Components](components/README.md)
+### [Components](components/README.md)
 
 * [LSE](components/algorithms/LSE.md) （对称加密类）
 * [Exception](components/exception/Exception.md) （自定义异常类）
@@ -52,6 +81,7 @@
 * [Security](components/security/Security.md) （安全类）
 * [URL](components/url/URL.md) （url构建类）
 * [View](components/view/View.md) （视图类）
+
 
 
 ## 约定
