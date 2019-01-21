@@ -68,7 +68,7 @@ composer create-project lin/lin
 
 * [LSE](components/algorithms/LSE.md) （对称加密类）
 * [Exception](components/exception/Exception.md) （自定义异常类）
-* [Layer](components/layer/Layer.md) （架构类，见[LBA说明](https://github.com/linlanye/lin)）
+* [Layer](components/layer/Layer.md) （架构类，见[LBA说明](framework/LBA.md)）
 * ORM（对象关系映射类）
     * [Model](components/orm/Model.md) （模型）
     * [Query](components/orm/Query.md) （查询）
@@ -88,7 +88,7 @@ composer create-project lin/lin
 对本文档一些术语进行解释，并在整个说明文档中都保持一致的意思。
 
 * **参见basement**：由于部分接口函数符合[basement](https://github.com/linlanye/basement)的规范要求，所以可直接前往[basement项目](docs_basement/README.md)查看具体说明。
-* **动、静态配置类**：每个组件类都依赖于一个专用的配置内容。有些类的配置项在整个生命器只加载一次，若后续调整配置内容，则不会产生任何变化，称为静态配置类；有些类的配置项则在每一次实例化都会重新加载一次配置，在生命期内调整配置内容会产生实际变化，称为动态配置类。
+* **动、静态配置**：每个组件类都依赖于一个专用的配置内容。有些类的配置项在整个生命期只加载一次，后续调整配置内容不会产生变化，称为静态配置；有些类的配置项则在每一次实例化都会重新加载，称为动态配置。
 * **重置**：有些类会提供`reset()`函数，一般代表重置的意思。重置不仅清空一切数据，还清空配置项，在这种情况下，再次运行静态配置的类会重新加载配置项。
 而`clean()`函数一般只清空数据，不清空配置项。
 *  **设置**：用于替代构造函数，方法名为`setting()`,在该方法中书写实例化时的前置执行，具有该方法的类其构造函数不可被覆写。
@@ -98,3 +98,4 @@ composer create-project lin/lin
 
 ## 版权信息
 * 作者：林澜叶(linlanye)版权所有。
+* 开源协议：[Apache-2.0](https://github.com/linlanye/lin/blob/HEAD/LICENSE)
