@@ -24,6 +24,8 @@ nav:
     - 框架:
         总览: framework/README.md
         LBA架构: framework/LBA.md
+        目录详解: framework/directory.md
+        注意事项: framework/notice.md
     - 组件:
         Basement组件:
             总览: basement/README.md

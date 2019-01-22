@@ -1,101 +1,31 @@
-# Lin 1.0
-[![Latest Stable Version](https://poser.pugx.org/lin/lin/v/stable)](https://packagist.org/packages/lin/lin)
-[![Total Downloads](https://poser.pugx.org/lin/lin/downloads)](https://packagist.org/packages/lin/lin)
-[![PHP Version](https://img.shields.io/badge/php-%3E%3D7.2-8892BF.svg)](http://www.php.net/)
-[![License](https://poser.pugx.org/lin/lin/license)](https://packagist.org/packages/lin/lin)
+简介
+---
+本部分为框架层的说明文档。
 
-## 介绍
-
-**Lin是**一套基于php7.2的全新web框架，它具有一套全组件化的开发理念，避免了以往web框架可定制性差、扩展开发繁杂、布局耦合度较高等缺点，完美实现了三重分离：应用层、框架层、组件层。使用者只需通过堆积木形式将一个个功能进行组装即可，而无需花费大量精力去理解一个框架的核心理念。Lin解耦了绝大多数开发场景，让协同开发更为简单，并且应用结构从一开始就基于高度弹性化的架构模式，对后续扩展、维护、升级都可以0成本轻松实现。
-
-## 特性
-
-* 全组件化，框架运行流程完全由使用者自行控制，通过一个个组件堆积而成。
-* 自带模拟kv、queue服务器，无需安装memcache和redis等外部环境，并可轻松一键切换。
-* 原生透明化支持SQL、Key-Value、Queue等服务器主从、多节点访问。
-* 新的组织架构，解决传统MVC模式的短板，可对应用轻量化弹性升级，该架构称为LBA(Layer, Block, Affix，见下述解释)。
-* 涵盖web开发的绝大多数场景，组件功能接口简单，学习接近0成本。（参见[lin/components](http://github.com/linlanye/lin-components)）
-* 生产环境和开发环境无缝替换，生产部署极致简单。
+---
 
 
-## LBA架构
+### 何为全组件化？
 
-LBA（Layer, Block, Affix）架构由层、块、摆件三个部分构成，由**林澜叶**独自提出。
+**Lin**的框架层和组件是完全分离的，两者之间互不影响。框架层基本是一种规范化的目录结构，只用于组织代码提供应用访问，自身不提供任何功能和执行流程。所以框架层是可以不使用**Lin**的组件而存在的，而**Lin**的组件也可以单独用在任何框架或项目中。总的来说：`Lin = 框架 + 组件` 。
 
-* **层**：核心架构所在，由整套不同的逻辑单元组成，彼此之间相互独立，是整个应用的骨架部分。如缓存层、数据访问层、控制器层、响应层等等。不同的层提供不同的应用场景，一个层可以看作一个用于调度不同功能的类。
-* **块**：依托于层而存在，为层提供一种功能，是对层功能的具体实现，是整个应用的血肉部分。一个块可以看作是具有某个功能的类，不同的块在同一个层中构成一个完备的应用场景。如在数据访问层中，数据模型提供对数据库的对象化操作，数据格式化器和映射器则提供存储数据到应用数据的一个映射。
-* **摆件**：作为对层的点缀或装饰，是一种可选的功能，它的添加和移除对整个应用架构没有影响。不同的摆件可以看作是一种功能扩展，它可以是一个类，也可以是一个脚本，一句代码，起到强化应用的作用。如视图页面、路由文件、语言包在小型应用中都可以看作摆件，可以无需视图（API开发），也可以无需路由(仅通过层来调度)，更可以无需语言包。
-
-对于MVC架构，Model相当于块，View则为摆件，Controller则对应层。基于MVC的各种变体也能在LBA架构中找到对应，实际上LBA正是对这套架构体系的一个更抽象的扩展，它能够适用于更大型的应用架构中。值得注意的是，LBA架构并没有对功能进行约束，开发者需根据实际情况选型。例如小型应用中路由可以看作摆件，但在大型应用中，路由则应作为层。
-
-## 目录结构
-
-初始主要结构如下：
-~~~
-your_app
-│
-├─app                               应用目录
-│  │
-│  ├─affix                          摆件目录
-│  │  ├─event                       事件目录
-│  │  ├─lang                          语言包目录
-│  │  ├─response                    响应目录
-│  │  │  ├─jsonxml                  json和xml的模版目录
-│  │  │  └─view                     视图页面目录
-│  │  │
-│  │  └─route                       路由规则目录
-│  │
-│  ├─block                          块目录
-│  │  ├─formatter                   数据格式化器目录
-│  │  ├─mapper                      数据映射器目录
-│  │  ├─model                       数据模型目录
-│  │  └─validator                   数据验证器目录
-│  │
-│  ├─config                         配置目录
-│  │  ├─lin-servers.php              服务器配置
-│  │  ├─lin-servers.production.php  服务器配置（生产环境）
-│  │  ├─lin.php                     组件配置
-│  │  └─lin.production.php          组件配置（生产环境）
-│  │
-│  ├─layer                          层目录
-│  │
-│  ├─lib                            库目录
-│  │  └─helper.php                  lin组件的助手函数
-│  │
-│  ├─boot.production.php            启动文件（生产环境）
-│  ├─boot.php                       启动文件
-│  └─register.php                   basement组件注册文件
-│
-├─public                            入口根目录
-│  ├─resource                       资源文件夹
-│  └─index.php                      入口文件
-│
-├─vendor                            组件目录
-│  ├─composer                       composer组件
-│  ├─basement                       basement组件
-│  └─lin                            lin组件
-│
-~~~
+因为全组件化的缘故，需要开发者在框架中自行**定义应用的启动流程**，但本框架内置了基本的启动流程，可以直接应用。
 
 
-## 安装
 
-```
-//1.composer方式
-composer create-project lin/lin
+### 文档构成
 
-//2.源码+composer
-进入源码根目录，执行composer install
+本部分文档只包含下面三部分。关于组件的具体使用，请参考[组件部分文档](../components/README.md)。
 
-//3.下载压缩文件
-https://downloads.php-lin.com/v1_0_0.zip
-```
+* [LBA架构介绍](LBA.md)
+* [目录说明](directory.md)
+* [开发注意](notice.md)
 
 
-## 使用
+### 快速使用
 
 * 在`app/boot.php`文件中定义整个应用执行流程。同理编写生产环境的`app/boot.production.php`文件
-* 在`app/register.php`文件中注册[basement](http://github.com/linlanye/basement)的标准组件。
+* 在`app/register.php`文件中注册[basement](../docs_basement/README.md)的标准组件。
 * 在`app/layer`目录中，根据应用复杂度，建立不同的层或建立不同的目录归档不同的层。
 * 在`app/block`目录中，根据具体业务场景，建立各种块，如数据模型、映射、校验、格式化等。
 * 在`app/affix`目录中，根据需求建立摆件，如定义事件、路由、多语言、视图页面或json的响应模版。
@@ -104,20 +34,7 @@ https://downloads.php-lin.com/v1_0_0.zip
 * 生产环境下，更改`public/index.php`中启动文件为`app/boot.production.php`。
 
 
-## 开发建议
-* 使用basement组件的情况，使用`Linker`类来调用，具体见[basement](http://github.com/linlanye/basement)。
-* 文件夹全小写。
-* 满足psr-4规则。
-* 使用 `/` 作为目录分隔符。
 
 
-## 详细文档
-* [github](https://github.com/linlanye/lin-docs)
-* [官网](https://docs.lin-php.com)
 
-## 捐赠
-![捐赠林澜叶](https://img.lin-php.com/donations.png)
 
-## 版权信息
-* 作者：林澜叶(linlanye)版权所有。
-* 开源协议：[Apache-2.0](LICENSE)
