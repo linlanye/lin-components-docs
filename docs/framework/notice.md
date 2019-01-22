@@ -1,10 +1,17 @@
-## 开发建议
-* 使用basement组件的情况，使用`Linker`类来调用，具体见[basement](http://github.com/linlanye/basement)。
-* 文件夹全小写。
-* 满足psr-4规则。
+开发注意和建议
+----
+
+
+## 注意
 * 使用 `/` 作为目录分隔符。
+* 所有文件后缀名皆使用`.php`。
 
-确保目录可写
-大小的字母开头为类变量
 
-文件末尾.php
+## 建议
+* 使用[basement](../docs_basement/README.md)组件的情况，用`Linker`类来调用。
+* 自定义的组件，也使用[basement](../docs_basement/README.md)的`Linker`类来注册和使用。
+* 文件夹全小写。
+* 任何情况下都区分大小写。
+* 满足[psr-4](https://www.php-fig.org/psr/psr-4/)自动加载规则。
+* 变量为类实例时候，变量首字母大写。
+
