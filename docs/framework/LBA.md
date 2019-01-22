@@ -42,4 +42,4 @@ Block则像是对每一层楼中的具体功能划分的实现，如对商务区
 
 ### Lin中的LBA
 
-在Lin中，LBA被定义成三个目录，每一个目录存放不同的Layer、Block和Affix。其中Layer和Block中都只存放类，而Affix则不做限制。具体请查看[目录说明](directory.md)
+在Lin中，LBA被定义成三个目录，每一个目录存放不同的Layer、Block和Affix。其中Layer和Block中都只存放类，而Affix则不做限制，具体请查看[目录说明](directory.md)。
