@@ -87,7 +87,7 @@ $Res->error('错误'); //显示错误页面并输出信息，停顿默认秒数�
 $Res->redirect('https://www.lin-php.com'); //立即跳转到指定url
 
 //响应指定数据的json、xml或视图页面
-$Res->withData(['stauts' => 'ok'])->json(); //响应json
+$Res->withData(['stauts' => 'ok'])->json(); //使用默认模板响应json
 $Res->withData(['stauts' => 'ok'])->xml('my_template'); //使用模板响应xml
 $Res->withData(['stauts' => 'ok'])->view('my_view'); //响应某个视图，具体的响应由配置项view.method所执行
 
@@ -139,7 +139,7 @@ return
     $this
 ```
 
-**withData()**: 为`json()`、`xml()`、`view()`指定响应数据，多次调用则合并数据
+**withData()**: 为`json()`、`xml()`、`view()`指定响应模板数据，多次调用则合并数据。当`json()`或`xml()`未使用模板时，则直接输出数据；否则模板中将按键名为变量名，键值为变量值分配模板变量。
 ```php
 params:
     array $data 响应数据
