@@ -64,7 +64,7 @@ lin
 该目录除包括[LBA](LBA.md)的三个目录以外，还包括一个用于存放用户库的目录`app/lib`，和三个php文件：启动流程（生产环境）、启动流程（开发环境）和basement组件注册。
 
 
-##### affix/
+##### affix目录
 用于存放[摆件](LBA.md)，又包含四类摆件（四个目录），分别为：
 
 * `event/`：存放定义事件的文件。
@@ -72,7 +72,7 @@ lin
 * `response/`：存放响应文件。又包含`view/`和`jsonxml/`两个子目录，分别存放视图模板、json或xml的模板。
 * `route/`：存放定义路由规则的文件。
 
-##### block/
+##### block目录
 用于存放[块](LBA.md)，又包含四类块（四个目录），分别为：
 
 * `formatter/`：存放定义[数据格式化类](../components/processor/Formatter.md)的文件。
@@ -80,21 +80,21 @@ lin
 * `model/`：存放定义[数据模型类](../components/orm/Model.md)的文件。
 * `validator/`：存放定义[数据校验类](../components/validator/Validator.md)的文件。
 
-##### layer/
+##### layer目录
 用于存放[层](LBA.md)，默认没有目录，若需结构化层，请自行定义目录。包括两个默认的文件，定义了两个默认的层：
 
 * `Index`：响应首页的控制器。
 * `Error`：响应非法地址的控制器，如`404`、`302`、`301`等响应状态。
 
 
-##### config/
+##### config目录
 用于存放配置文件，默认的配置文件为生产和开发环境下的各一套，每套包含：
 
 * `lin`： Lin组件的配置。
 * `lin-servers`： Lin服务器组件需要使用的额外配置。
 
 
-##### lib/
+##### lib目录
 用于存放应用开发中需要自行引入的第三方库，包含一个默认的助手文件：
 
 * `helper.php`：用于提供Lin常用组件类的快捷函数化调用，不建议在生产环境使用。
