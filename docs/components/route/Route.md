@@ -198,7 +198,7 @@ return
 params:
     string|Closure|array $pre 执行规则，string格式为'Class.method'。若为数组，则按数组元素依次执行，元素格式为string或Closure
 return
-    bool
+    $this
 ```
 
 **withPost()**: 使当前`create()`定义的规则包含全局后置执行，一次性使用。
@@ -206,7 +206,7 @@ return
 params:
     string|Closure|array $post 同上
 return
-    bool
+    $this
 ```
 
 **create()**: 创建路由执行规则
