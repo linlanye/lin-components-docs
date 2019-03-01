@@ -4,7 +4,7 @@ repo_url: https://github.com/linlanye/lin
 edit_uri: https://github.com/linlanye/lin-docs/edit/master/docs
 site_description: Lin是一款基于php7.2的高性能、全组件化、极简主义框架。框架层、组件层、应用层三重结构完美分离，应用开发依托全新的架构模式LBA：Layer、Block、Affix，使其更加高效化和弹性化。
 site_author: 林澜叶(linlanye)
-copyright: <a href="http://www.miitbeian.gov.cn" target="_blank">蜀ICP备19001015号-2</a>
+copyright: <a href="http://www.miitbeian.gov.cn" target="_blank">蜀ICP备19005469号-2</a>
 theme:
     name: material
     language: 'zh'
